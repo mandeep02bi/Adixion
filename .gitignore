@@ -1,0 +1,45 @@
+# ========== General ==========
+*.log
+*.tmp
+*.swp
+*.class
+*.pyc
+.DS_Store
+Thumbs.db
+
+# ========== IDE ==========
+.idea/
+*.iml
+.vscode/
+
+# ========== Flutter ==========
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+
+# مهم جدًا
+pubspec.lock
+
+# ========== Android ==========
+android/.gradle/
+android/app/build/
+android/local.properties
+
+# ملفات build الثقيلة
+*.apk
+*.aab
+
+# ========== iOS ==========
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/.last_build_id
+
+# ========== Misc ==========
+*.zip
+*.rar
+*.7z
