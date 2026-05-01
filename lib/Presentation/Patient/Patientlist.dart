@@ -7,7 +7,7 @@ import 'package:doctor/Presentation/Invoice/Invoice.dart';
 // import 'package:doctor/Presentation/Patient/Addpatient.dart';
 import 'package:doctor/Presentation/Patient/add_patient_screen.dart';
 import 'package:doctor/Presentation/Prescription/Prescriptionlist.dart';
-import 'package:doctor/Presentation/Records/Records.dart';
+import 'package:doctor/Presentation/Records/records.dart';
 import 'package:doctor/Presentation/Reminder/reminder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,15 +1,39 @@
+import 'package:doctor/Core/Theme/color_app.dart';
+import 'package:doctor/Core/helper/image_assets.dart';
+import 'package:doctor/Presentation/Records/widgets/container_body.dart';
+import 'package:doctor/Presentation/Records/widgets/custom_header_recordes.dart';
 import 'package:flutter/material.dart';
 
-class Records extends StatefulWidget {
+class Records extends StatelessWidget {
   const Records({super.key});
 
   @override
-  State<Records> createState() => _RecordsState();
-}
-
-class _RecordsState extends State<Records> {
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: ColorApp.scaffoldColor,
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(ImageAssets.backgroundImagePath2),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            children: [
+              const CustomHeaderRecordes(title: 'Kumar’s Records'),
+              const SizedBox(height: 10),
+              const ContainerBody(
+                name: 'Kumar',
+                age: '31yr',
+                email: '@kumar123',
+                mobile: '9876543210',
+                date: '20-mar 2026',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

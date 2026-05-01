@@ -67,4 +67,6 @@ class ImageAssets {
   static const String eye = 'assets/Icons/Eye.png';
   static const String pencile = 'assets/Icons/Pencil.png';
   static const String delete = 'assets/Icons/Delete.png';
+  static const String headeRecordes =
+      'assets/images/Header/header_recordes.png';
 }

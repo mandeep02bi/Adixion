@@ -1,6 +1,6 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:doctor/Core/helper/image_assets.dart';
+import 'package:doctor/Presentation/Records/records.dart';
 import 'package:doctor/core/Theme/color_app.dart';
 import 'package:doctor/Presentation/Patient/Patientlist.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +45,9 @@ class GridMenu extends StatelessWidget {
             onTap: () {
               if (items[index] == "Patient List") {
                 Get.to(PatientListScreen());
+              }
+              if (items[index] == "View Records") {
+                Get.to(Records());
               }
             },
             child: Container(
