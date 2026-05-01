@@ -4,7 +4,7 @@ import 'package:doctor/Presentation/MyTemplate/widgets/consent_template.dart';
 import 'package:doctor/Presentation/MyTemplate/widgets/lab_template.dart';
 import 'package:doctor/Presentation/MyTemplate/widgets/medicine_template.dart';
 import 'package:doctor/widgets/Add_patient/custom_button.dart';
-import 'package:doctor/widgets/Add_prescription/show_add_medicine_sheet.dart';
+import 'package:doctor/Presentation/Prescription/widgets/show_add_medicine_sheet.dart';
 import 'package:flutter/material.dart';
 
 class CustomHeaderTemplate extends StatefulWidget {

@@ -7,11 +7,11 @@ import 'package:doctor/widgets/Add_patient/custom_button.dart';
 import 'package:doctor/widgets/Add_patient/custom_header_widgets.dart';
 import 'package:doctor/widgets/Add_patient/custom_section_title.dart';
 import 'package:doctor/widgets/Add_patient/custom_text_field.dart';
-import 'package:doctor/widgets/Add_prescription/Patien_widget.dart';
-import 'package:doctor/widgets/Add_prescription/border_container.dart';
-import 'package:doctor/widgets/Add_prescription/button_prescription.dart';
-import 'package:doctor/widgets/Add_prescription/empty_state.dart';
-import 'package:doctor/widgets/Add_prescription/show_add_medicine_sheet.dart';
+import 'package:doctor/Presentation/Prescription/widgets/Patien_widget.dart';
+import 'package:doctor/Presentation/Prescription/widgets/border_container.dart';
+import 'package:doctor/Presentation/Prescription/widgets/button_prescription.dart';
+import 'package:doctor/Presentation/Prescription/widgets/empty_state.dart';
+import 'package:doctor/Presentation/Prescription/widgets/show_add_medicine_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +23,7 @@ class Addperscriptionthirddr extends StatefulWidget {
 }
 
 class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
- void _refreshData() {
+  void _refreshData() {
     setState(() {});
   }
 
@@ -67,7 +67,7 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                         const PatientWidgets(),
 
                         const SizedBox(height: 12),
-                         CustomFormField(
+                        CustomFormField(
                           label: 'DIAGNOSIS By Staff',
                           hint: 'Viral Fever & Throat Infection',
                           fieldFillColor: Color(0xFFF9FCFF),
@@ -78,7 +78,7 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                         ),
                         SizedBox(height: 15),
 
-                         CustomSectionTitle(
+                        CustomSectionTitle(
                           icon: ImageAssets.lab,
                           title: 'Lab Test',
                           widthIcon: 25,
@@ -109,8 +109,6 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                               itemBuilder: (context, index) {
                                 final med = labTests[index];
                                 return Container(
-                                  margin: const EdgeInsets.only(bottom: 12),
-                                  padding: const EdgeInsets.all(16),
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFF9FCFF),
                                     borderRadius: BorderRadius.circular(25),
@@ -135,9 +133,6 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
                                               children: [
                                                 Expanded(
                                                   child: Text(
@@ -223,58 +218,24 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                                   iconButtom: ImageAssets.lab,
                                   showMedicineFields: false,
                                 );
-                                
+
                                 _refreshData();
                               },
                               text: 'Add Lab Test',
                               textStyle: TextStyle(color: ColorApp.textColor),
-                              subText: ImageAssets.add,
+                              assetIcon: ImageAssets.add,
                               buttonColor: const Color(0xFFF9FCFF),
                             ),
                           ),
                         ),
-                        SizedBox(height: 60),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        //   children: [
-                        //     CustomButton(
-                        //       height: 60,
-                        //       width: 150,
-                        //       onPressed: () {},
-                        //       text: 'Preview  Now',
-                        //       textStyle: TextStyle(
-                        //         fontSize: 12,
-                        //         color: ColorApp.textColor,
-                        //       ),
-                        //       subText: ImageAssets.drft,
-                        //       buttonColor: Color(0xFFFFFFFF),
-                        //       border: Border.all(color: ColorApp.textColor),
-                        //     ),
-                        //     CustomButton(
-                        //       height: 60,
-                        //       width: 160,
-                        //       onPressed: () {
-                        //         Get.to(const PrescriptionPreviewPage());
-                        //       },
-                        //       text: 'Preview Persciption',
-                        //       textStyle: TextStyle(
-                        //         fontSize: 12,
-                        //         color: Color(0xFFECECEC),
-                        //       ),
-                        //       subText: ImageAssets.send,
-                        //       widthicon: 20,
-                        //       heighticon: 20,
 
-                        //       buttonColor: Color(0xFF8D34B0),
-                        //     ),
-                        //     SizedBox(height: 80),
-                        //   ],
-                        // ),
-                         ButtonPrescription(
+                        ButtonPrescription(
+                          text: 'Preview  Now',
                           isfinish: true,
                           onPressed: () {
-                        Get.to(const PrescriptionPreviewPage());
-                      }),
+                            Get.to(const PrescriptionPreviewPage());
+                          },
+                        ),
                       ],
                     ),
                   ),

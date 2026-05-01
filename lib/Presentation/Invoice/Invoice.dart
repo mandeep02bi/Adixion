@@ -31,41 +31,6 @@ class _InvoiceState extends State<Invoice> {
             backgroundImage: "assets/images/background/P.jpg"
           ),
 
-          //   Expanded(
-          //   child: ListView(
-          //     padding: const EdgeInsets.symmetric(horizontal: 16),
-          //     children: const [
-          //       InvoiceCard(
-          //         name: "Kumar",
-          //         patientId: "PT-001",
-          //         age: 28,
-          //         amount: 6200,
-          //         isPaid: true,
-          //       ),
-          //       InvoiceCard(
-          //         name: "Rishabh Singh",
-          //         patientId: "PT-001",
-          //         age: 28,
-          //         amount: 6200,
-          //         isPaid: false,
-          //       ),
-          //       InvoiceCard(
-          //         name: "Rishabh Singh",
-          //         patientId: "PT-001",
-          //         age: 28,
-          //         amount: 6200,
-          //         isPaid: false,
-          //       ),
-          //       InvoiceCard(
-          //         name: "Rishabh Singh",
-          //         patientId: "PT-001",
-          //         age: 28,
-          //         amount: 6200,
-          //         isPaid: true,
-          //       ),
-          //     ],
-          //   ),
-          // ),
           Expanded(
   child: FutureBuilder<List<InvoiceModel>>(
     future: MedicineDatabase.getAllInvoices(),

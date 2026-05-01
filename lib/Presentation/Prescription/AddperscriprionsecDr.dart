@@ -7,9 +7,9 @@ import 'package:doctor/widgets/Add_patient/custom_button.dart';
 import 'package:doctor/widgets/Add_patient/custom_header_widgets.dart';
 import 'package:doctor/widgets/Add_patient/custom_section_title.dart';
 import 'package:doctor/widgets/Add_patient/custom_text_field.dart';
-import 'package:doctor/widgets/Add_prescription/Patien_widget.dart';
-import 'package:doctor/widgets/Add_prescription/border_container.dart';
-import 'package:doctor/widgets/Add_prescription/button_prescription.dart';
+import 'package:doctor/Presentation/Prescription/widgets/Patien_widget.dart';
+import 'package:doctor/Presentation/Prescription/widgets/border_container.dart';
+import 'package:doctor/Presentation/Prescription/widgets/button_prescription.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +21,7 @@ class Addperscriprionsecdr extends StatefulWidget {
 }
 
 class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
-   void _refreshData() {
+  void _refreshData() {
     setState(() {});
   }
 
@@ -62,7 +62,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                       const PatientWidgets(),
                       const SizedBox(height: 16),
 
-                       CustomFormField(
+                      CustomFormField(
                         label: 'DIAGNOSIS',
                         hint: 'Viral Fever & Throat Infection',
                         fieldFillColor: Color(0xFFF9FCFF),
@@ -72,7 +72,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                       ),
                       const SizedBox(height: 16),
 
-                       CustomSectionTitle(
+                      CustomSectionTitle(
                         icon: ImageAssets.drugs,
                         title: 'MEDICINES',
                         textStyle: TextStyle(
@@ -126,7 +126,6 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                                       height: 30,
                                     ),
                                     const SizedBox(width: 12),
-
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment:
@@ -164,7 +163,6 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                                             ],
                                           ),
                                           const SizedBox(height: 8),
-
                                           Row(
                                             children: [
                                               RichText(
@@ -192,7 +190,6 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                                                 ),
                                               ),
                                               const SizedBox(width: 20),
-                                              // Frequency
                                               Row(
                                                 children: [
                                                   const Icon(
@@ -213,7 +210,6 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                                             ],
                                           ),
                                           const SizedBox(height: 6),
-
                                           Row(
                                             children: [
                                               Row(
@@ -235,7 +231,6 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                                                 ],
                                               ),
                                               const SizedBox(width: 25),
-                                              // Instruction
                                               Expanded(
                                                 child: Text(
                                                   med.instruction,
@@ -269,22 +264,27 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                         ),
                         child: DashedBorderContainer(
                           child: CustomButton(
-                            height: 50,
+                            height: 47,
                             width: 335,
                             onPressed: () async {
-                              await _showAddMedicineSheet(context);
+                              await showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                builder: (_) => const _AddMedicineBottomSheet(),
+                              );
                               _refreshData();
                             },
                             text: 'Add Medicine',
                             textStyle: TextStyle(color: ColorApp.textColor),
-                            subText: ImageAssets.add,
-                            // buttonColor: const Color(0xFFF9FCFF),
+                            assetIcon: ImageAssets.add,
+                            buttonColor: const Color(0xFFF9FCFF),
                           ),
                         ),
                       ),
 
                       const SizedBox(height: 15),
-                       CustomFormField(
+                      CustomFormField(
                         label: 'DOCTOR\'S NOTES',
                         hint:
                             'Add instructions, follow-up advice, restrictions...',
@@ -296,7 +296,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                         keyboardType: TextInputType.multiline,
                       ),
                       const SizedBox(height: 16),
-                       CustomFormField(
+                      CustomFormField(
                         label: 'FOLLOW-UP DATE',
                         hint: 'mm/dd/yyyy',
                         fieldFillColor: Color(0xFFF9FCFF),
@@ -306,9 +306,11 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                         heightIcon: 16,
                       ),
                       const SizedBox(height: 25),
-                      ButtonPrescription(onPressed: () {
-                        Get.to(const Addperscriptionthirddr());
-                      }),
+                      ButtonPrescription(
+                        onPressed: () {
+                          Get.to(const Addperscriptionthirddr());
+                        },
+                      ),
                       const SizedBox(height: 24),
                     ],
                   ),
@@ -362,7 +364,16 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
   }
 }
 
-Future<void> _showAddMedicineSheet(BuildContext context) async {
+
+class _AddMedicineBottomSheet extends StatefulWidget {
+  const _AddMedicineBottomSheet();
+
+  @override
+  State<_AddMedicineBottomSheet> createState() =>
+      _AddMedicineBottomSheetState();
+}
+
+class _AddMedicineBottomSheetState extends State<_AddMedicineBottomSheet> {
   final medicineNameController = TextEditingController();
   final qtyController = TextEditingController();
   final frequencyController = TextEditingController();
@@ -370,246 +381,399 @@ Future<void> _showAddMedicineSheet(BuildContext context) async {
   final noOfDaysController = TextEditingController();
   final instructionController = TextEditingController();
 
-  return showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Colors.transparent,
-    builder: (context) {
-      return SizedBox(
-        height: MediaQuery.of(context).size.height * 0.85,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Container(
-                    height: 5,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
+  String? _selectedFrequency;
+  String? _selectedRoute;
+  String? _selectedInstruction;
 
-                const SizedBox(height: 10),
+  final List<String> _frequencyOptions = [
+    'None',
+    'OD (Once A Day / 1-0-0)',
+    'BD (Twice A Day / 1-0-1)',
+    'TDS (Thrice A Day / 1-1-1)',
+    'QID (Four Times A Day / 1-1-1-1)',
+    'Stat (Immediately)',
+    'SOS (When Required)',
+    'HS (Before Sleep / 0-0-1)',
+  ];
 
-                Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Image.asset(
-                      ImageAssets.remove,
-                      height: 50,
-                      width: 50,
-                    ),
-                  ),
-                ),
+  final List<String> _routeOptions = [
+    'None',
+    'Oral',
+    'Topical',
+    'Nasal',
+    'Drops',
+    'Syrup',
+    'Ointment',
+    'Injectable',
+    'Sub-Lingual',
+    'Dermal',
+    'Mucosal',
+    'Rectal',
+    'Intradermal',
+    'Subcutaneous',
+    'Eye Drops',
+    'Ear Drops',
+    'Toothpaste',
+  ];
 
-                const SizedBox(height: 10),
+  final List<String> _instructionOptions = [
+    'None',
+    'After Meal',
+    'Before Meal',
+    'Empty Stomach',
+    'Anytime Of The Day',
+    'Not Specific',
+    'After Breakfast',
+    'After Lunch',
+    'Before Breakfast',
+    'Before Lunch',
+    'Before Dinner',
+    'After Dinner',
+    'Early Morning Empty Stomach',
+  ];
 
-                const Text(
-                  "Add Medicine",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                ),
+  @override
+  void dispose() {
+    medicineNameController.dispose();
+    qtyController.dispose();
+    frequencyController.dispose();
+    routeFormController.dispose();
+    noOfDaysController.dispose();
+    instructionController.dispose();
+    super.dispose();
+  }
 
-                const SizedBox(height: 20),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Name of Medicine / Product",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: ColorApp.labelColor,
-                        fontSize: 14,
-                      ),
-                    ),
-                    Text(
-                      "T.Qty",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: ColorApp.labelColor,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: CustomFormField(
-                        controller: medicineNameController,
-                        label: '',
-                        hint: 'Medicine Name',
-                        icon: ImageAssets.stethoscope,
-                        fieldFillColor: Color(0xFFF9FCFF),
-                        widthIcon: 18,
-                        heightIcon: 18,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: CustomFormField(
-                        controller: qtyController,
-                        label: '',
-                        hint: 'Qty',
-                        fieldFillColor: Color(0xFFF9FCFF),
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 15),
-
-                // Save and Add + Choose Template buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: CustomButton(
-                        width: 150,
-                        height: 50,
-                        onPressed: () {},
-                        text: 'Save and Add ',
-                        textStyle: TextStyle(
-                          fontSize: 12,
-                          color: ColorApp.textColor,
-                        ),
-                        border: Border.all(color: ColorApp.textColor, width: 1),
-                        buttonColor: ColorApp.scaffoldColor,
-                        subText: ImageAssets.drft,
-                      ),
-                    ),
-                    Expanded(
-                      child: CustomButton(
-                        width: 180,
-                        height: 50,
-                        onPressed: () {},
-                        text: 'Choose Template ',
-                        subText: ImageAssets.drft,
-                        textStyle: TextStyle(
-                          fontSize: 12,
-                          color: ColorApp.textColor,
-                        ),
-                        border: Border.all(color: ColorApp.textColor, width: 1),
-                        buttonColor: ColorApp.scaffoldColor,
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 20),
-
-                // FREQUENCY + ROUTE/FORM labels
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomFormField(
-                        controller: frequencyController,
-                        label: 'Frequency',
-                        hint: '170',
-                        icon: ImageAssets.heightPrescription,
-                        widthIcon: 16,
-                        heightIcon: 16,
-                        fieldFillColor: ColorApp.scaffoldColor,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: CustomFormField(
-                        controller: routeFormController,
-                        label: 'Route/ form',
-                        hint: '65',
-                        icon: ImageAssets.weight,
-                        widthIcon: 16,
-                        heightIcon: 16,
-                        fieldFillColor: ColorApp.scaffoldColor,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomFormField(
-                        controller: noOfDaysController,
-                        label: 'No of Days',
-                        hint: '170',
-                        icon: ImageAssets.heightPrescription,
-                        widthIcon: 16,
-                        heightIcon: 16,
-                        fieldFillColor: ColorApp.scaffoldColor,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: CustomFormField(
-                        controller: instructionController,
-                        label: 'Instruction',
-                        hint: '65',
-                        icon: ImageAssets.weight,
-                        widthIcon: 16,
-                        heightIcon: 16,
-                        fieldFillColor: ColorApp.scaffoldColor,
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 20),
-
-                 CustomFormField(
-                  label: 'Additional Comments',
-                  hint: "Add instructions, follow-up advice, restictions...",
-                  hintStyle: TextStyle(
-                    fontSize: 12,
-                    color: ColorApp.labelColor,
-                  ),
-                  keyboardType: TextInputType.multiline,
-                  fieldFillColor: Color(0xFFF9FCFF),
-                ),
-                const SizedBox(height: 20),
-
-                Center(
-                  child: CustomButton(
-                    onPressed: () async {
-                      if (medicineNameController.text.trim().isEmpty) return;
-
-                      final medicine = MedicineModel(
-                        medicineName: medicineNameController.text.trim(),
-                        qty: qtyController.text.trim(),
-                        frequency: frequencyController.text.trim(),
-                        routeForm: routeFormController.text.trim(),
-                        noOfDays: noOfDaysController.text.trim(),
-                        instruction: instructionController.text.trim(),
-                      );
-
-                      await MedicineDatabase.instance.insertMedicine(medicine);
-                      if (context.mounted) Navigator.pop(context);
-                    },
-                    text: 'Add Medicine',
-                    height: 70,
-                    width: 200,
-                    subText: ImageAssets.drugs,
-                  ),
-                ),
-              ],
+  void _showPickerSheet({
+    required String title,
+    required List<String> options,
+    required String? selected,
+    required void Function(String) onSelected,
+  }) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (pickerCtx) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(2),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(14),
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+          ),
+          const Divider(height: 1),
+          Flexible(
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemCount: options.length,
+              separatorBuilder: (_, __) => const Divider(height: 1, indent: 16),
+              itemBuilder: (_, i) {
+                final opt = options[i];
+                final isSelected = opt == selected;
+                return ListTile(
+                  title: Text(
+                    opt,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: isSelected ? ColorApp.textColor : Colors.black87,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.normal,
+                    ),
+                  ),
+                  trailing: isSelected
+                      ? Icon(Icons.check, color: ColorApp.textColor, size: 20)
+                      : null,
+                  onTap: () {
+                    onSelected(opt);
+                    Navigator.pop(pickerCtx);  
+                  },
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _pickerField({
+    required TextEditingController controller,
+    required String label,
+    required String? selected,
+    required String icon,
+    required List<String> options,
+    required String pickerTitle,
+    required void Function(String) onSelected,
+  }) {
+    return Stack(
+      children: [
+        CustomFormField(
+          controller: controller,
+          label: label,
+          hint: selected ?? 'Select',
+          icon: icon,
+          widthIcon: 16,
+          heightIcon: 16,
+          fieldFillColor: ColorApp.scaffoldColor,
         ),
-      );
-    },
-  );
+        Positioned.fill(
+          child: GestureDetector(
+            onTap: () => _showPickerSheet(
+              title: pickerTitle,
+              options: options,
+              selected: selected,
+              onSelected: onSelected,
+            ),
+            child: Container(color: Colors.transparent),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.85,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  height: 5,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              Align(
+                alignment: Alignment.topRight,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Image.asset(ImageAssets.remove, height: 50, width: 50),
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              const Text(
+                "Add Medicine",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Name of Medicine / Product",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: ColorApp.labelColor,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Text(
+                    "T.Qty",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: ColorApp.labelColor,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: CustomFormField(
+                      controller: medicineNameController,
+                      label: '',
+                      hint: 'Medicine Name',
+                      icon: ImageAssets.stethoscope,
+                      fieldFillColor: Color(0xFFF9FCFF),
+                      widthIcon: 18,
+                      heightIcon: 18,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: CustomFormField(
+                      controller: qtyController,
+                      label: '',
+                      hint: 'Qty',
+                      fieldFillColor: Color(0xFFF9FCFF),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 15),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: CustomButton(
+                      width: 150,
+                      height: 50,
+                      onPressed: () {},
+                      text: 'Save and Add ',
+                      textStyle: TextStyle(
+                        fontSize: 12,
+                        color: ColorApp.textColor,
+                      ),
+                      border: Border.all(color: ColorApp.textColor, width: 1),
+                      buttonColor: ColorApp.scaffoldColor,
+                      assetIcon: ImageAssets.drft,
+                    ),
+                  ),
+                  Expanded(
+                    child: CustomButton(
+                      width: 180,
+                      height: 50,
+                      onPressed: () {},
+                      text: 'Choose Template ',
+                      assetIcon: ImageAssets.drft,
+                      textStyle: TextStyle(
+                        fontSize: 12,
+                        color: ColorApp.textColor,
+                      ),
+                      border: Border.all(color: ColorApp.textColor, width: 1),
+                      buttonColor: ColorApp.scaffoldColor,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: _pickerField(
+                      controller: frequencyController,
+                      label: 'Frequency',
+                      selected: _selectedFrequency,
+                      icon: ImageAssets.heightPrescription,
+                      options: _frequencyOptions,
+                      pickerTitle: 'Frequency',
+                      onSelected: (val) => setState(() {
+                        _selectedFrequency = val;
+                        frequencyController.text = val;
+                      }),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: _pickerField(
+                      controller: routeFormController,
+                      label: 'Route/ form',
+                      selected: _selectedRoute,
+                      icon: ImageAssets.weight,
+                      options: _routeOptions,
+                      pickerTitle: 'Route / Form',
+                      onSelected: (val) => setState(() {
+                        _selectedRoute = val;
+                        routeFormController.text = val;
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: CustomFormField(
+                      controller: noOfDaysController,
+                      label: 'No of Days',
+                      hint: '170',
+                      icon: ImageAssets.heightPrescription,
+                      widthIcon: 16,
+                      heightIcon: 16,
+                      fieldFillColor: ColorApp.scaffoldColor,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: _pickerField(
+                      controller: instructionController,
+                      label: 'Instruction',
+                      selected: _selectedInstruction,
+                      icon: ImageAssets.weight,
+                      options: _instructionOptions,
+                      pickerTitle: 'Instruction',
+                      onSelected: (val) => setState(() {
+                        _selectedInstruction = val;
+                        instructionController.text = val;
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+
+              CustomFormField(
+                label: 'Additional Comments',
+                hint: "Add instructions, follow-up advice, restrictions...",
+                hintStyle: TextStyle(fontSize: 12, color: ColorApp.labelColor),
+                keyboardType: TextInputType.multiline,
+                fieldFillColor: Color(0xFFF9FCFF),
+              ),
+              const SizedBox(height: 20),
+
+              Center(
+                child: CustomButton(
+                  onPressed: () async {
+                    if (medicineNameController.text.trim().isEmpty) return;
+                    final medicine = MedicineModel(
+                      medicineName: medicineNameController.text.trim(),
+                      qty: qtyController.text.trim(),
+                      frequency: frequencyController.text.trim(),
+                      routeForm: routeFormController.text.trim(),
+                      noOfDays: noOfDaysController.text.trim(),
+                      instruction: instructionController.text.trim(),
+                    );
+                    await MedicineDatabase.instance.insertMedicine(medicine);
+                    if (context.mounted) Navigator.pop(context);
+                  },
+                  text: 'Add Medicine',
+                  height: 70,
+                  width: 200,
+                  assetIcon: ImageAssets.drugs,
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

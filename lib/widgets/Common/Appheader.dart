@@ -20,33 +20,12 @@ class AppHeader extends StatelessWidget {
       height: 100,
       child: Stack(
         children: [
-
-          /// 🔷 BACKGROUND (Image OR Gradient)
-          // Positioned.fill(
-          //   child: backgroundImage != null
-          //       ? Image.asset(
-          //           backgroundImage!,
-          //           fit: BoxFit.cover,
-          //         )
-          //       : Container(
-          //           decoration: const BoxDecoration(
-          //             gradient: LinearGradient(
-          //               colors: [
-          //                 Color(0xFF2D9CDB),
-          //                 Color(0xFF6C63FF),
-          //               ],
-          //               begin: Alignment.topLeft,
-          //               end: Alignment.bottomRight,
-          //             ),
-          //           ),
-          //         ),
-          // ),
-              Image.asset(
-                    "assets/images/Header/header.png",
-                    height: 120,
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
+          Image.asset(
+            "assets/images/Header/header.png",
+            height: 120,
+            width: double.infinity,
+            fit: BoxFit.fill,
+          ),
 
           /// 🔵 TOP RIGHT CIRCLE EFFECT (like screenshot)
           // Positioned(
@@ -61,27 +40,27 @@ class AppHeader extends StatelessWidget {
           //     ),
           //   ),
           // ),
-           Positioned(
-                    top: 42,
-                    left: 15,
-                   child: CircleAvatar(
-                    radius: 22,
-                    backgroundColor: Colors.white24,
-                    child: IconButton(
-                      padding: EdgeInsets.zero,          // 🔥 remove padding
-                      constraints: const BoxConstraints(), // 🔥 remove extra space
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Image.asset(
-                        "assets/images/Icons/Patient/Frame.png",
-                        height: 22,
-                        width: 22,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                  ),
+          Positioned(
+            top: 42,
+            left: 15,
+            child: CircleAvatar(
+              radius: 22,
+              backgroundColor: Colors.white24,
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Image.asset(
+                  "assets/images/Icons/Patient/Frame.png",
+                  height: 22,
+                  width: 22,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ),
 
           /// 🔷 CONTENT
           SafeArea(
@@ -90,7 +69,6 @@ class AppHeader extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
                   /// 🔙 BACK
                   CircleAvatar(
                     radius: 22,
@@ -99,8 +77,7 @@ class AppHeader extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
                       onPressed: onBack,
-                      icon: const Icon(Icons.arrow_back,
-                          color: Colors.white),
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
                     ),
                   ),
 
@@ -126,22 +103,22 @@ class AppHeader extends StatelessWidget {
                   //   ),
                   // ),
                   onAdd != null
-                  ? CircleAvatar(
-                      radius: 22,
-                      backgroundColor: Colors.white24,
-                      child: IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        onPressed: onAdd,
-                        icon: Image.asset(
-                        "assets/images/Icons/Patient/Add.png",
-                        height: 80,
-                        width: 80,
-                        // color: Colors.white, // remove if icon already white
-                      ),
-                      ),
-                    )
-                  : const SizedBox(width: 44), // 👈 keeps layout balanced
+                      ? CircleAvatar(
+                          radius: 22,
+                          backgroundColor: Colors.white24,
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                            onPressed: onAdd,
+                            icon: Image.asset(
+                              "assets/images/Icons/Patient/Add.png",
+                              height: 80,
+                              width: 80,
+                              // color: Colors.white, // remove if icon already white
+                            ),
+                          ),
+                        )
+                      : const SizedBox(width: 44), // 👈 keeps layout balanced
                 ],
               ),
             ),
@@ -150,4 +127,4 @@ class AppHeader extends StatelessWidget {
       ),
     );
   }
-} 
+}

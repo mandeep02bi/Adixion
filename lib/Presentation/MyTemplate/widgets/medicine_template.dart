@@ -1,7 +1,7 @@
 import 'package:doctor/core/Theme/color_app.dart';
 import 'package:doctor/Core/helper/image_assets.dart';
 import 'package:doctor/Presentation/MyTemplate/widgets/patine_widgets_template.dart';
-import 'package:doctor/widgets/Add_prescription/custom_text_form_field.dart';
+import 'package:doctor/Presentation/Prescription/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class MedicineTemplate extends StatelessWidget {

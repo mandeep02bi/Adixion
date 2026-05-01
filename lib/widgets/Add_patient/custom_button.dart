@@ -45,14 +45,6 @@ class CustomButton extends StatelessWidget {
             color: buttonColor ?? const Color(0xFF8D34B0),
             borderRadius: BorderRadius.circular(15),
             border: border,
-            boxShadow: [
-              BoxShadow(
-                // ignore: deprecated_member_use
-                color: const Color(0xFF8B5CF6).withOpacity(0.3),
-                blurRadius: 12,
-                offset: const Offset(0, 6),
-              ),
-            ],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

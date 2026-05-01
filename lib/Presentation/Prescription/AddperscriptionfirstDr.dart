@@ -3,8 +3,8 @@ import 'package:doctor/Core/helper/image_assets.dart';
 import 'package:doctor/Presentation/Prescription/AddperscriprionsecDr.dart';
 import 'package:doctor/widgets/Add_patient/custom_header_widgets.dart';
 import 'package:doctor/widgets/Add_patient/custom_text_field.dart';
-import 'package:doctor/widgets/Add_prescription/Patien_widget.dart';
-import 'package:doctor/widgets/Add_prescription/button_prescription.dart';
+import 'package:doctor/Presentation/Prescription/widgets/Patien_widget.dart';
+import 'package:doctor/Presentation/Prescription/widgets/button_prescription.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,6 @@ class Addperscriptionfirstdr extends StatefulWidget {
 
 class _AddperscriptionfirstdrState extends State<Addperscriptionfirstdr> {
 
-    // static const String backgroundImagePath = 'assets/images/background/05_Home screen.jpg';
 
    @override
   Widget build(BuildContext context) {

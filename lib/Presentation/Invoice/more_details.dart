@@ -1,5 +1,5 @@
 import 'package:doctor/Core/theme/color_app.dart';
-import 'package:doctor/widgets/Add_prescription/custom_text_form_field.dart';
+import 'package:doctor/Presentation/Prescription/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class MoreDetails extends StatefulWidget {

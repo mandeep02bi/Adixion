@@ -5,7 +5,7 @@ class CustomFormField extends StatelessWidget {
   final String label;
   final String hint;
   final String? icon;
-  final String? subText; // 👈 NEW STRING
+  final String? subText;
 
   final IconData? suffixIcon;
   final double? width;
@@ -19,7 +19,6 @@ class CustomFormField extends StatelessWidget {
   final double? widthIcon;
   final double? heightIcon;
 
-  /// 🔥 NEW
   final bool isDateField;
   final VoidCallback? onTap;
   final Color? fieldFillColor;
@@ -75,7 +74,7 @@ class CustomFormField extends StatelessWidget {
             controller: controller,
             validator: validator,
             keyboardType: keyboardType,
-            readOnly: isDateField, // 🔥 IMPORTANT
+            readOnly: isDateField,
             onTap: onTap,
             cursorColor: primaryGreen,
             maxLines: keyboardType == TextInputType.multiline ? 3 : 1,

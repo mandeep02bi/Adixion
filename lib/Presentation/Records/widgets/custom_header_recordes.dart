@@ -1,7 +1,6 @@
 import 'package:doctor/core/Theme/color_app.dart';
 import 'package:doctor/Core/helper/image_assets.dart';
-import 'package:doctor/widgets/Add_patient/custom_button.dart';
-import 'package:doctor/widgets/Add_prescription/custom_text_form_field.dart';
+import 'package:doctor/Presentation/Prescription/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class CustomHeaderRecordes extends StatefulWidget {
@@ -133,7 +132,6 @@ class _CustomHeaderRecordesState extends State<CustomHeaderRecordes> {
                               const SizedBox(width: 10),
                               _buildTab('Instructions', 2),
                               const SizedBox(width: 10),
-                              // ✅ إصلاح: Invoices = index 3 مش 2
                               _buildTab('Invoices', 3),
                             ],
                           ),
@@ -158,7 +156,6 @@ class _CustomHeaderRecordesState extends State<CustomHeaderRecordes> {
     );
   }
 
-  // ✅ Extract tab widget لتجنب التكرار
   Widget _buildTab(String label, int index) {
     final active = _isActive(index);
     return GestureDetector(
