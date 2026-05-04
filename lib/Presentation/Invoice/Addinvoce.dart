@@ -3,7 +3,6 @@ import 'package:doctor/Data/Data_source/Medicine_datasource.dart';
 import 'package:doctor/Data/model/invoice_model.dart';
 import 'package:doctor/Presentation/Invoice/more_details.dart';
 import 'package:doctor/Presentation/Invoice/widgets/custom_header_invoice.dart';
-import 'package:doctor/widgets/Common/Appheader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,4 @@
 import 'package:doctor/Presentation/Prescription/widgets/container_medicen.dart';
-import 'package:doctor/Presentation/Prescription/widgets/show_add_medicine_sheet.dart';
 import 'package:doctor/core/Theme/color_app.dart';
 import 'package:doctor/Core/helper/image_assets.dart';
 import 'package:doctor/Data/Data_source/Medicine_datasource.dart';
@@ -139,7 +138,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                                         onTap: () async {
                                           await MedicineDatabase.instance
                                               .deleteMedicine(med.id!);
-                                          _refreshData(); 
+                                          _refreshData();
                                         },
                                         child: const Icon(
                                           Icons.delete_outline,
@@ -239,10 +238,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
 
               const SizedBox(height: 15),
 
-              ContainerMedicen(
-                showMedicineFields: true,
-                onAdded: _refreshData, 
-              ),
+              ContainerMedicen(showMedicineFields: true, onAdded: _refreshData),
 
               const SizedBox(height: 25),
               CustomButton(

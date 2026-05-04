@@ -41,7 +41,7 @@ jobs:
         run: |
           cd android
           bundle exec fastlane deploy_to_firebase
-          env:
+        env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID  }}
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
-        
+         
