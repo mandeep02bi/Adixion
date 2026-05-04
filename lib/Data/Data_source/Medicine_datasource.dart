@@ -22,7 +22,7 @@ class MedicineDatabase {
 
     return await openDatabase(
       path,
-      version: 3,
+      version: 4,
       onCreate: _createDB,
       onUpgrade: _upgradeDB,
     );
@@ -55,6 +55,9 @@ class MedicineDatabase {
         )
       ''');
     }
+    if (oldVersion < 4) {
+      await db.execute('ALTER TABLE medicines ADD COLUMN type TEXT DEFAULT "medicine"');
+    }
   }
 
   Future _createDB(Database db, int version) async {
@@ -66,7 +69,8 @@ class MedicineDatabase {
         frequency TEXT NOT NULL,
         route_form TEXT NOT NULL,
         no_of_days TEXT NOT NULL,
-        instruction TEXT NOT NULL
+        instruction TEXT NOT NULL,
+        type TEXT DEFAULT "medicine" 
       )
     ''');
     await db.execute('''
@@ -99,61 +103,64 @@ class MedicineDatabase {
     return await db.insert('medicines', medicine.toMap());
   }
 
-  // Get All
   Future<List<MedicineModel>> getAllMedicines() async {
     final db = await instance.database;
-    final result = await db.query('medicines', orderBy: 'id DESC');
+    final result = await db.query(
+      'medicines',
+      where: 'type = ? OR type IS NULL', 
+      whereArgs: ['medicine'],
+      orderBy: 'id DESC',
+    );
     return result.map((map) => MedicineModel.fromMap(map)).toList();
   }
 
-  // Delete
-  Future<int> deleteMedicine(int id) async {
-    final db = await instance.database;
-    return await db.delete(
-      'medicines',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-    Future<List<MedicineModel>> getAllLabTests() async {
+  // Get All Lab Tests
+  Future<List<MedicineModel>> getAllLabTests() async {
     final db = await database;
     final result = await db.query(
       'medicines',
       where: 'type = ?',
       whereArgs: ['lab'],
+      orderBy: 'id DESC',
     );
     return result.map((e) => MedicineModel.fromMap(e)).toList();
   }
 
+  // Delete
+  Future<int> deleteMedicine(int id) async {
+    final db = await instance.database;
+    return await db.delete('medicines', where: 'id = ?', whereArgs: [id]);
+  }
 
   // Close DB
   Future close() async {
     final db = await instance.database;
     db.close();
   }
+
   static Future<int> insertCertificate(CertificateModel data) async {
-  final db = await instance.database;
-  return db.insert('certificate', data.toMap());
-}
+    final db = await instance.database;
+    return db.insert('certificate', data.toMap());
+  }
 
-/// INSERT
-static Future<int> insertInvoice(InvoiceModel data) async {
-  final db = await instance.database;
-  return db.insert('invoice', data.toMap());
-}
+  /// INSERT
+  static Future<int> insertInvoice(InvoiceModel data) async {
+    final db = await instance.database;
+    return db.insert('invoice', data.toMap());
+  }
 
-/// GET ALL
-static Future<List<InvoiceModel>> getAllInvoices() async {
-  final db = await instance.database;
-  final res = await db.query('invoice', orderBy: 'id DESC');
+  /// GET ALL
+  static Future<List<InvoiceModel>> getAllInvoices() async {
+    final db = await instance.database;
+    final res = await db.query('invoice', orderBy: 'id DESC');
 
-  return res.map((e) => InvoiceModel.fromMap(e)).toList();
-}
+    return res.map((e) => InvoiceModel.fromMap(e)).toList();
+  }
 
-static Future<List<CertificateModel>> getAllCertificates() async {
-  final db = await instance.database;
-  final res = await db.query('certificate', orderBy: 'id DESC');
+  static Future<List<CertificateModel>> getAllCertificates() async {
+    final db = await instance.database;
+    final res = await db.query('certificate', orderBy: 'id DESC');
 
-  return res.map((e) => CertificateModel.fromMap(e)).toList();
-}
+    return res.map((e) => CertificateModel.fromMap(e)).toList();
+  }
 }

@@ -6,8 +6,7 @@ class MedicineModel {
   final String routeForm;
   final String noOfDays;
   final String instruction;
-    final String type;
-
+  final String? type;
 
   MedicineModel({
     this.id,
@@ -17,30 +16,32 @@ class MedicineModel {
     required this.routeForm,
     required this.noOfDays,
     required this.instruction,
-    this.type = 'medicine',
+    this.type, 
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'medicine_name': medicineName,
+      'medicine_name': medicineName, 
       'qty': qty,
       'frequency': frequency,
       'route_form': routeForm,
       'no_of_days': noOfDays,
       'instruction': instruction,
+      'type': type, 
     };
   }
 
   factory MedicineModel.fromMap(Map<String, dynamic> map) {
     return MedicineModel(
       id: map['id'],
-      medicineName: map['medicine_name'],
-      qty: map['qty'],
-      frequency: map['frequency'],
-      routeForm: map['route_form'],
-      noOfDays: map['no_of_days'],
-      instruction: map['instruction'],
+      medicineName: map['medicine_name'] ?? map['medicineName'] ?? '',
+      qty: map['qty'] ?? '',
+      frequency: map['frequency'] ?? '',
+      routeForm: map['route_form'] ?? map['routeForm'] ?? '',
+      noOfDays: map['no_of_days'] ?? map['noOfDays'] ?? '',
+      instruction: map['instruction'] ?? '',
+      type: map['type'] ?? 'medicine',
     );
   }
 }

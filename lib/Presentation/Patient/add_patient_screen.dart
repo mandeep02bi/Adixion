@@ -1,5 +1,5 @@
-
-import 'package:doctor/Presentation/Patient/add_patient_screen_vitls.dart';
+import 'package:doctor/Core/theme/color_app.dart';
+import 'package:doctor/Presentation/Patient/add_patient_screen_address_and_location.dart';
 import 'package:doctor/widgets/Add_patient/custom_button.dart';
 import 'package:doctor/widgets/Add_patient/custom_gender_selection.dart';
 import 'package:doctor/widgets/Add_patient/custom_header_widgets.dart';
@@ -14,26 +14,30 @@ class AddPatientScreen extends StatefulWidget {
   State<AddPatientScreen> createState() => _AddPatientScreenState();
 }
 
+String? selectedBloodGroup;
+final List<String> bloodGroups = [
+  'A+',
+  'A-',
+  'B+',
+  'B-',
+  'O+',
+  'O-',
+  'AB+',
+  'AB-',
+];
+
 class _AddPatientScreenState extends State<AddPatientScreen> {
   final _formKey = GlobalKey<FormState>();
 
   String selectedGender = "Male";
 
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _dobController = TextEditingController();
 
-
-  static const String backgroundImagePath = 'assets/images/background/05_Home screen.jpg';
+  static const String backgroundImagePath =
+      'assets/images/background/05_Home screen.jpg';
 
   @override
   void dispose() {
-    _firstNameController.dispose();
-    _lastNameController.dispose();
-    _phoneController.dispose();
-    _emailController.dispose();
     _dobController.dispose();
     super.dispose();
   }
@@ -53,7 +57,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
           ),
           child: Column(
             children: [
-              const CustomHeaderWidgets(currentStep: 1),
+              const CustomHeaderWidgets(),
 
               Expanded(child: Stack(children: [_buildForm()])),
             ],
@@ -68,7 +72,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
     return Form(
       key: _formKey,
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -90,7 +94,6 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                     widthIcon: 16,
                     heightIcon: 16,
                     textColor: Color(0xFF888A8E),
-                    controller: _firstNameController,
                     validator: (v) =>
                         v!.isEmpty ? "Please enter first name" : null,
                   ),
@@ -102,7 +105,6 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                     icon: 'assets/images/Icons/Patient/Add/e.png',
                     hint: "Singh",
                     textColor: Color(0xFF888A8E),
-                    controller: _lastNameController,
                     validator: (v) =>
                         v!.isEmpty ? "Please enter last name" : null,
                   ),
@@ -120,7 +122,6 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
               widthIcon: 16,
               textColor: Color(0xFF888A8E),
               keyboardType: TextInputType.phone,
-              controller: _phoneController,
               validator: (v) => v!.length < 10 ? "Invalid phone number" : null,
             ),
 
@@ -134,7 +135,6 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
               widthIcon: 16,
               textColor: Color(0xFF888A8E),
               keyboardType: TextInputType.emailAddress,
-              controller: _emailController,
               validator: (v) => v!.isEmpty ? "Please enter email" : null,
             ),
 
@@ -146,18 +146,18 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
               icon: 'assets/images/Icons/Patient/Add/do.png',
               isDateField: true,
               onTap: () async {
-                  DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime(2000),
-                    firstDate: DateTime(1900),
-                    lastDate: DateTime.now(),
-                  );
+                DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime(2000),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime.now(),
+                );
 
-                  if (pickedDate != null) {
-                    _dobController.text =
-                        "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";
-                  }
-                },
+                if (pickedDate != null) {
+                  _dobController.text =
+                      "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";
+                }
+              },
 
               keyboardType: TextInputType.datetime,
               widthIcon: 14,
@@ -170,19 +170,17 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
 
             const SizedBox(height: 20),
 
-
             CustomFormField(
               label: "Age",
-              hint: "patient@email.com",
+              hint: "21",
               icon: 'assets/images/Icons/Patient/Add/m.png',
               heightIcon: 14.21,
               widthIcon: 16,
               textColor: Color(0xFF888A8E),
               keyboardType: TextInputType.emailAddress,
-              controller: _emailController,
               validator: (v) => v!.isEmpty ? "Please enter Age" : null,
             ),
-             const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             const Text(
               "GENDER",
@@ -203,16 +201,28 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 });
               },
             ),
+            const SizedBox(height: 20),
+            CustomSectionTitle(
+              title: 'Blood group',
+              textStyle: TextStyle(
+                fontSize: 12,
+                color: ColorApp.labelColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            _buildBloodGroupDropdown(),
+            const AddPatientScreenAddressAndLocation(),
 
             const SizedBox(height: 40),
 
             CustomButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => MedicalInfoScreen()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (_) => MedicalInfoScreen()),
+                  // );
                 }
               },
               text: 'Continue',
@@ -223,6 +233,42 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildBloodGroupDropdown() {
+    return DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+        hintText: "Select Blood Group",
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Image.asset(
+            'assets/images/Icons/Patient/Add/Blood.png',
+            width: 18,
+            height: 18,
+            color: Colors.redAccent,
+          ),
+        ),
+        filled: true,
+        fillColor: const Color(0xFFF8FEFB),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF0F6E56)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF0F6E56), width: 1.2),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF0F6E56)),
+        ),
+      ),
+      initialValue: selectedBloodGroup,
+      items: bloodGroups
+          .map((group) => DropdownMenuItem(value: group, child: Text(group)))
+          .toList(),
+      onChanged: (val) => setState(() => selectedBloodGroup = val),
     );
   }
 }
