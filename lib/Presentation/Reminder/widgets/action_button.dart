@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ActionButton extends StatelessWidget {
   final String? image;
@@ -20,15 +21,15 @@ class ActionButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (image != null)
-            Image.asset(image!, height: 28, width: 25, fit: BoxFit.contain)
+            Image.asset(image!, height: 28.h, width: 25.w, fit: BoxFit.contain)
           else
-            const SizedBox(height: 28),
-          const SizedBox(height: 6),
+            SizedBox(height: 28.h),
+          SizedBox(height: 6.h),
           Text(
             label,
-            style: const TextStyle(
-              fontSize: 12,
-              color: Color(0xFF000000),
+            style: TextStyle(
+              fontSize: 12.sp,
+              color: const Color(0xFF000000),
               fontWeight: FontWeight.w500,
             ),
             textAlign: TextAlign.center,
@@ -38,3 +39,4 @@ class ActionButton extends StatelessWidget {
     );
   }
 }
+

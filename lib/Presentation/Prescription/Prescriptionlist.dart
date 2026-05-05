@@ -1,5 +1,6 @@
 import 'package:doctor/Presentation/Prescription/AddperscriptionfirstDr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class Prescriptionlist extends StatefulWidget {
@@ -24,15 +25,6 @@ class _PrescriptionlistState extends State<Prescriptionlist> {
               fit: BoxFit.cover,
             ),
           ),
-          // Container(
-          //   decoration: const BoxDecoration(
-          //     gradient: LinearGradient(
-          //       colors: [Color(0xffE8F0F2), Color(0xffB7D6CC)],
-          //       begin: Alignment.topCenter,
-          //       end: Alignment.bottomCenter,
-          //     ),
-          //   ),
-          // ),
 
           Column(
             children: [
@@ -41,74 +33,68 @@ class _PrescriptionlistState extends State<Prescriptionlist> {
                 children: [
                   Image.asset(
                     "assets/images/Header/header.png",
-                    height: 110,
+                    height: 110.h,
                     width: double.infinity,
                     fit: BoxFit.fill,
                   ),
 
                   Positioned(
-                    top: 40,
-                    left: 15,
-                   child: CircleAvatar(
-                    radius: 22,
-                    backgroundColor: Colors.white24,
-                    child: IconButton(
-                      padding: EdgeInsets.zero,          // 🔥 remove padding
-                      constraints: const BoxConstraints(), // 🔥 remove extra space
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Image.asset(
-                        "assets/images/Icons/Patient/Frame.png",
-                        height: 22,
-                        width: 22,
-                        fit: BoxFit.contain,
+                    top: 40.h,
+                    left: 15.w,
+                    child: CircleAvatar(
+                      radius: 22.r,
+                      backgroundColor: Colors.white24,
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Image.asset(
+                          "assets/images/Icons/Patient/Frame.png",
+                          height: 22.h,
+                          width: 22.w,
+                          fit: BoxFit.contain,
+                        ),
                       ),
-                    ),
-                  ),
-                  ),
-
-                  const Positioned(
-                    top: 45,
-                    left: 80,
-                    child: Text(
-                      "Prescription History",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                      )
                     ),
                   ),
 
                   Positioned(
-                    top: 40,
-                    right: 20,
+                    top: 45.h,
+                    left: 80.w,
+                    child: Text("Prescription History",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w500,
+                        )),
+                  ),
+
+                  Positioned(
+                    top: 40.h,
+                    right: 20.w,
                     child: CircleAvatar(
-                      radius: 22,
+                      radius: 22.r,
                       backgroundColor: Colors.white24,
                       child: IconButton(
-                      onPressed: () {
-                        // Navigator.pop(context);
-                         print("Mandeep");
-                        Get.to(Addperscriptionfirstdr());
-                        
-                      },
-                      icon: Image.asset(
-                        "assets/images/Icons/Patient/Add.png",
-                        height: 80,
-                        width: 80,
-                        // color: Colors.white, // remove if icon already white
+                        onPressed: () {
+                          Get.to(const Addperscriptionfirstdr());
+                        },
+                        icon: Image.asset(
+                          "assets/images/Icons/Patient/Add.png",
+                          height: 80.h,
+                          width: 80.w,
+                        ),
                       ),
-                    ),
                     ),
                   )
                 ],
               ),
 
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
 
-              /// Patient List
+              /// Prescription List
               Expanded(
                 child: ListView.builder(
                   itemCount: 4,
@@ -123,42 +109,46 @@ class _PrescriptionlistState extends State<Prescriptionlist> {
                             });
                           },
                           child: Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 6),
-                            padding: const EdgeInsets.all(12),
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 6.h),
+                            padding: EdgeInsets.all(12.w),
                             decoration: BoxDecoration(
                               color: Colors.white70,
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15.r),
                             ),
                             child: Row(
                               children: [
                                 /// Avatar
                                 CircleAvatar(
-                                  radius: 22,
+                                  radius: 22.r,
                                   backgroundColor: Colors.blueGrey,
-                                  child: const Text("AT",
-                                      style: TextStyle(color: Colors.white)),
+                                  child: Text("AT",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14.sp)),
                                 ),
 
-                                const SizedBox(width: 12),
+                                SizedBox(width: 12.w),
 
                                 /// Name
-                                const Expanded(
+                                Expanded(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text("Rishabh Singh",
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14.sp)),
                                       Text("PT-001.Age 28 Years",
                                           style: TextStyle(
-                                              color: Colors.grey)),
+                                              color: Colors.grey,
+                                              fontSize: 12.sp)),
                                     ],
                                   ),
                                 ),
 
-                                const Icon(Icons.keyboard_arrow_down)
+                                Icon(Icons.keyboard_arrow_down, size: 24.r)
                               ],
                             ),
                           ),
@@ -167,12 +157,11 @@ class _PrescriptionlistState extends State<Prescriptionlist> {
                         /// Dropdown Grid
                         if (expandedIndex == index)
                           Container(
-                            margin:
-                                const EdgeInsets.symmetric(horizontal: 12),
-                            padding: const EdgeInsets.all(5),
+                            margin: EdgeInsets.symmetric(horizontal: 12.w),
+                            padding: EdgeInsets.all(5.w),
                             decoration: BoxDecoration(
                               color: Colors.white70,
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15.r),
                             ),
                             child: GridView.count(
                               shrinkWrap: true,
@@ -182,9 +171,11 @@ class _PrescriptionlistState extends State<Prescriptionlist> {
                               children: [
                                 gridItem("assets/images/Icons/Patient/p.png",
                                     "Prescribe"),
-                                gridItem("assets/images/Icons/Patient/Attach.png",
+                                gridItem(
+                                    "assets/images/Icons/Patient/Attach.png",
                                     "Attachment"),
-                                gridItem("assets/images/Icons/Patient/Instructions.png",
+                                gridItem(
+                                    "assets/images/Icons/Patient/Instructions.png",
                                     "Instruction"),
                               ],
                             ),
@@ -205,10 +196,10 @@ class _PrescriptionlistState extends State<Prescriptionlist> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(icon, height: 40),
-        const SizedBox(height: 5),
-        Text(title, style: const TextStyle(fontSize: 12))
+        Image.asset(icon, height: 40.h),
+        SizedBox(height: 5.h),
+        Text(title, style: TextStyle(fontSize: 12.sp))
       ],
     );
   }
-}
+}

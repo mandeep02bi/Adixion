@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSectionTitle extends StatelessWidget {
   final String icon;
@@ -20,17 +21,19 @@ class CustomSectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset(icon, width: widthIcon, height: heightIcon),
-        const SizedBox(width: 10),
+        Image.asset(icon, width: widthIcon.w, height: heightIcon.h),
+        SizedBox(width: 10.w),
         Text(
           title,
-          style: textStyle ?? const TextStyle(
-            color: Color(0xFF0F6E56),
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          style: textStyle ??
+              TextStyle(
+                color: const Color(0xFF0F6E56),
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600,
+              ),
         ),
       ],
     );
   }
 }
+

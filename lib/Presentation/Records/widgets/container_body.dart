@@ -1,5 +1,6 @@
 import 'package:doctor/core/Theme/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContainerBody extends StatelessWidget {
   final String name;
@@ -24,69 +25,68 @@ class ContainerBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(11),
-        border: Border.all(color: ColorApp.boderContainer, width: 2),
+        borderRadius: BorderRadius.circular(11.r),
+        border: Border.all(color: ColorApp.boderContainer, width: 2.w),
       ),
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 14, bottom: 10),
+            padding: EdgeInsets.only(top: 14.h, bottom: 10.h),
             child: Text(
               date,
-              style: const TextStyle(
-                fontSize: 13,
+              style: TextStyle(
+                fontSize: 13.sp,
                 color: Colors.grey,
                 fontWeight: FontWeight.w400,
               ),
             ),
           ),
-
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+            padding: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 16.h),
             child: Column(
               children: [
                 buildRow('Name:', name),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 buildRow('Age :', age),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 buildRow('Email:', email),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 Row(
                   children: [
                     Expanded(child: buildRow('Mobile:', mobile)),
                     GestureDetector(
                       onTap: onEdit,
                       child: Container(
-                        width: 38,
-                        height: 38,
+                        width: 38.r,
+                        height: 38.r,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.grey.shade100,
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.edit_outlined,
-                          size: 18,
+                          size: 18.r,
                           color: Colors.black54,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8.w),
                     GestureDetector(
                       onTap: onDelete,
                       child: Container(
-                        width: 38,
-                        height: 38,
+                        width: 38.r,
+                        height: 38.r,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.grey.shade100,
                           border: Border.all(color: ColorApp.labelColor),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.delete_outline,
-                          size: 18,
+                          size: 18.r,
                           color: Colors.black54,
                         ),
                       ),
@@ -106,21 +106,21 @@ class ContainerBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: 55,
+          width: 55.w,
           child: Text(
             label,
-            style: const TextStyle(
-              fontSize: 14,
+            style: TextStyle(
+              fontSize: 14.sp,
               color: Colors.grey,
               fontWeight: FontWeight.w400,
             ),
           ),
         ),
-        const SizedBox(width: 8),
+        SizedBox(width: 8.w),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 14,
+          style: TextStyle(
+            fontSize: 14.sp,
             color: Colors.black87,
             fontWeight: FontWeight.w500,
           ),
@@ -129,3 +129,4 @@ class ContainerBody extends StatelessWidget {
     );
   }
 }
+

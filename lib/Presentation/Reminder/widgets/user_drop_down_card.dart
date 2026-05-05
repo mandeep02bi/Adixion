@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserDropdownCard extends StatefulWidget {
   final String name;
@@ -48,16 +49,16 @@ class _UserDropdownCardState extends State<UserDropdownCard>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.r),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
+              blurRadius: 8.r,
+              offset: Offset(0, 2.h),
             ),
           ],
         ),
@@ -66,52 +67,52 @@ class _UserDropdownCardState extends State<UserDropdownCard>
           children: [
             InkWell(
               onTap: _toggle,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 14,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 16.w,
+                  vertical: 14.h,
                 ),
                 child: Row(
                   children: [
                     Image.asset(
                       widget.imagePath,
-                      width: 40.51,
-                      height: 38.51,
+                      width: 40.w,
+                      height: 38.h,
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.w),
                     Expanded(
                       child: Text(
                         widget.name,
-                        style: const TextStyle(
-                          fontSize: 16,
+                        style: TextStyle(
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF1A1A2E),
+                          color: const Color(0xFF1A1A2E),
                         ),
                       ),
                     ),
                     RotationTransition(
                       turns: _iconTurns,
-                      child: const Icon(
+                      child: Icon(
                         Icons.keyboard_arrow_down,
-                        color: Color(0xFF888888),
+                        color: const Color(0xFF888888),
+                        size: 24.r,
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-
             AnimatedSize(
               duration: const Duration(milliseconds: 200),
               curve: Curves.easeInOut,
               child: _isExpanded
                   ? widget.expandedSection
-                  : const SizedBox(width: double.infinity, height: 0),
+                  : SizedBox(width: double.infinity, height: 0),
             ),
           ],
         ),
       ),
     );
   }
-}
+}

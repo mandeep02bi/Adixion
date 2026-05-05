@@ -4,6 +4,7 @@ import 'package:doctor/Data/model/invoice_model.dart';
 import 'package:doctor/Presentation/Invoice/more_details.dart';
 import 'package:doctor/Presentation/Invoice/widgets/custom_header_invoice.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class Addinvoce extends StatefulWidget {
@@ -49,7 +50,6 @@ class _AddinvoceState extends State<Addinvoce>
     );
 
     await MedicineDatabase.insertInvoice(data);
-
     Get.back(result: true);
   }
 
@@ -73,6 +73,8 @@ class _AddinvoceState extends State<Addinvoce>
               TabBar(
                 controller: tabController,
                 labelColor: Colors.black,
+                labelStyle: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+                unselectedLabelStyle: TextStyle(fontSize: 14.sp),
                 tabs: const [
                   Tab(text: "Invoice details"),
                   Tab(text: "More details"),
@@ -83,16 +85,16 @@ class _AddinvoceState extends State<Addinvoce>
                 child: TabBarView(
                   controller: tabController,
                   children: [
-                    /// 🔷 FIRST TAB (YOUR UI)
+                    /// 🔷 FIRST TAB
                     SingleChildScrollView(
-                      padding: const EdgeInsets.all(16),
+                      padding: EdgeInsets.all(16.r),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           /// NAME
                           _field("Invoice / Bill in the name of", nameCtrl),
 
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
 
                           /// TITLE + CURRENCY
                           Row(
@@ -100,21 +102,23 @@ class _AddinvoceState extends State<Addinvoce>
                               Expanded(
                                 child: _field("Invoice title", titleCtrl),
                               ),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 12.w,
+                                  vertical: 12.h,
                                 ),
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  color: Colors.white,
                                 ),
-                                child: const Text("₹"),
+                                child: Text("₹", style: TextStyle(fontSize: 16.sp)),
                               ),
                             ],
                           ),
 
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
 
                           /// ITEM + AMOUNT
                           Row(
@@ -125,55 +129,71 @@ class _AddinvoceState extends State<Addinvoce>
                                   itemCtrl,
                                 ),
                               ),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               SizedBox(
-                                width: 100,
+                                width: 100.w,
                                 child: TextField(
                                   controller: amountCtrl,
                                   keyboardType: TextInputType.number,
                                   onChanged: (_) => calculateTotal(),
-                                  decoration: const InputDecoration(
+                                  style: TextStyle(fontSize: 14.sp),
+                                  decoration: InputDecoration(
                                     hintText: "Amount",
-                                    border: OutlineInputBorder(),
+                                    hintStyle: TextStyle(fontSize: 14.sp),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
 
-                          const SizedBox(height: 30),
+                          SizedBox(height: 30.h),
 
                           /// TOTAL + BUTTON
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 10,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 16.w,
+                                  vertical: 10.h,
                                 ),
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.green),
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  color: Colors.white,
                                 ),
-                                child: Text("Total Amount ₹ $total"),
+                                child: Text(
+                                  "Total Amount ₹ $total",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-
                               ElevatedButton(
                                 onPressed: saveInvoice,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFF7B3FCF),
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 30,
-                                    vertical: 12,
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 30.w,
+                                    vertical: 12.h,
                                   ),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30),
+                                    borderRadius: BorderRadius.circular(30.r),
                                   ),
                                 ),
-                                child: const Text(
+                                child: Text(
                                   "Add",
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ],
@@ -182,7 +202,7 @@ class _AddinvoceState extends State<Addinvoce>
                       ),
                     ),
 
-                    /// 🔷 SECOND TAB (EMPTY / FUTURE)
+                    /// 🔷 SECOND TAB
                     const MoreDetails(),
                   ],
                 ),
@@ -197,12 +217,15 @@ class _AddinvoceState extends State<Addinvoce>
   Widget _field(String hint, TextEditingController controller) {
     return TextField(
       controller: controller,
+      style: TextStyle(fontSize: 14.sp),
       decoration: InputDecoration(
         hintText: hint,
+        hintStyle: TextStyle(fontSize: 14.sp),
         filled: true,
         fillColor: Colors.white,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r)),
       ),
     );
   }
 }
+

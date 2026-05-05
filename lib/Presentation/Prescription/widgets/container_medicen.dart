@@ -5,6 +5,7 @@ import 'package:doctor/Data/Data_source/Medicine_datasource.dart';
 import 'package:doctor/Data/model/medicine_model.dart';
 import 'package:doctor/widgets/Add_patient/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContainerMedicen extends StatefulWidget {
   final VoidCallback? onAdded;
@@ -128,10 +129,10 @@ class _ContainerMedicenState extends State<ContainerMedicen> {
         // Title
         Text(
           widget.title ?? "Add Medicine",
-          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.bold),
         ),
 
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,7 +142,7 @@ class _ContainerMedicenState extends State<ContainerMedicen> {
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 color: ColorApp.labelColor,
-                fontSize: 14,
+                fontSize: 14.sp,
               ),
             ),
             if (widget.showMedicineFields)
@@ -150,13 +151,13 @@ class _ContainerMedicenState extends State<ContainerMedicen> {
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   color: ColorApp.labelColor,
-                  fontSize: 14,
+                  fontSize: 14.sp,
                 ),
               ),
           ],
         ),
 
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
 
         Row(
           children: [
@@ -168,12 +169,12 @@ class _ContainerMedicenState extends State<ContainerMedicen> {
                 hint: widget.name ?? 'Medicine Name',
                 icon: ImageAssets.stethoscope,
                 fieldFillColor: const Color(0xFFF9FCFF),
-                widthIcon: 18,
-                heightIcon: 18,
+                widthIcon: 18.w,
+                heightIcon: 18.h,
               ),
             ),
             if (widget.showMedicineFields) ...[
-              const SizedBox(width: 10),
+              SizedBox(width: 10.w),
               Expanded(
                 child: CustomFormField(
                   controller: qtyController,
@@ -186,7 +187,7 @@ class _ContainerMedicenState extends State<ContainerMedicen> {
           ],
         ),
 
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
 
         if (widget.showMedicineFields) ...[
           Row(
@@ -195,30 +196,29 @@ class _ContainerMedicenState extends State<ContainerMedicen> {
                 child: CustomFormField(
                   controller: frequencyController,
                   label: widget.labelFrequency ?? 'Frequency',
-                  hint: widget.frequency ?? 'e.g., 1x/day', // Replaced '170'
-                  icon:
-                      ImageAssets.heightPrescription, // Consider changing icon
-                  widthIcon: 16,
-                  heightIcon: 16,
+                  hint: widget.frequency ?? 'e.g., 1x/day',
+                  icon: ImageAssets.heightPrescription,
+                  widthIcon: 16.w,
+                  heightIcon: 16.h,
                   fieldFillColor: ColorApp.scaffoldColor,
                 ),
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: 10.w),
               Expanded(
                 child: CustomFormField(
                   controller: routeFormController,
                   label: widget.labelRoute ?? 'Route/Form',
-                  hint: widget.route ?? 'e.g., Oral', // Replaced '65'
-                  icon: ImageAssets.weight, // Consider changing icon
-                  widthIcon: 16,
-                  heightIcon: 16,
+                  hint: widget.route ?? 'e.g., Oral',
+                  icon: ImageAssets.weight,
+                  widthIcon: 16.w,
+                  heightIcon: 16.h,
                   fieldFillColor: ColorApp.scaffoldColor,
                 ),
               ),
             ],
           ),
 
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
 
           Row(
             children: [
@@ -226,86 +226,84 @@ class _ContainerMedicenState extends State<ContainerMedicen> {
                 child: CustomFormField(
                   controller: noOfDaysController,
                   label: widget.labelNoOfDay ?? 'No of Days',
-                  hint: widget.noOfDay ?? 'e.g., 7', // Replaced '170'
+                  hint: widget.noOfDay ?? 'e.g., 7',
                   icon: ImageAssets.heightPrescription,
-                  widthIcon: 16,
-                  heightIcon: 16,
+                  widthIcon: 16.w,
+                  heightIcon: 16.h,
                   fieldFillColor: ColorApp.scaffoldColor,
                 ),
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: 10.w),
               Expanded(
                 child: CustomFormField(
                   controller: instructionController,
                   label: widget.labelInstruction ?? 'Instruction',
-                  hint:
-                      widget.instruction ??
-                      'e.g., After meals', // Replaced '65'
+                  hint: widget.instruction ?? 'e.g., After meals',
                   icon: ImageAssets.weight,
-                  widthIcon: 16,
-                  heightIcon: 16,
+                  widthIcon: 16.w,
+                  heightIcon: 16.h,
                   fieldFillColor: ColorApp.scaffoldColor,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
         ],
 
-        const SizedBox(height: 15),
+        SizedBox(height: 15.h),
 
         CustomFormField(
-          controller: commentsController, // Now capturing the data!
+          controller: commentsController,
           label: 'Additional Comments',
           hint: "Add instructions, follow-up advice, restrictions...",
-          hintStyle: TextStyle(fontSize: 12, color: ColorApp.labelColor),
+          hintStyle: TextStyle(fontSize: 12.sp, color: ColorApp.labelColor),
           keyboardType: TextInputType.multiline,
           fieldFillColor: const Color(0xFFF9FCFF),
         ),
 
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child:
-                  widget.primaryCustomButton ??
+              child: widget.primaryCustomButton ??
                   CustomButton(
-                    height: 60,
-                    width: 150,
+                    height: 60.h,
+                    width: 150.w,
                     onPressed: _onAddMedicine,
                     text: 'Save and Add',
                     textStyle: TextStyle(
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       color: ColorApp.textColor,
                     ),
-                    border: Border.all(color: ColorApp.textColor, width: 1),
+                    border: Border.all(color: ColorApp.textColor, width: 1.w),
                     buttonColor: ColorApp.scaffoldColor,
                     icon: ImageAssets.drft,
                   ),
             ),
-            const SizedBox(width: 10),
+            SizedBox(width: 10.w),
             Expanded(
-              child:
-                  widget.secondaryCustomButton ??
+              child: widget.secondaryCustomButton ??
                   CustomButton(
-                    height: 60,
-                    width: 150,
+                    height: 60.h,
+                    width: 150.w,
                     onPressed: () {},
                     text: 'Choose Template',
                     icon: ImageAssets.drft,
                     textStyle: TextStyle(
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       color: ColorApp.textColor,
                     ),
-                    border: Border.all(color: ColorApp.textColor, width: 1),
+                    border: Border.all(color: ColorApp.textColor, width: 1.w),
                     buttonColor: ColorApp.scaffoldColor,
                   ),
             ),
           ],
         ),
+
       ],
     );
   }
 }
+

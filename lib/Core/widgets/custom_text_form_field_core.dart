@@ -1,5 +1,6 @@
 import 'package:doctor/Core/theme/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormFieldCore extends StatelessWidget {
   final String label;
@@ -15,8 +16,7 @@ class CustomTextFormFieldCore extends StatelessWidget {
   final double? heightIcon;
   final Color? fieldFillColor;
   final TextStyle? hintStyle;
-    final TextStyle? lableStyle;
-
+  final TextStyle? lableStyle;
 
   const CustomTextFormFieldCore({
     super.key,
@@ -46,70 +46,69 @@ class CustomTextFormFieldCore extends StatelessWidget {
       children: [
         Text(
           label.toUpperCase(),
-          style: lableStyle ?? TextStyle(
-            fontSize: 14,
-            color: ColorApp.labelColor,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.8,
-          ),
+          style: lableStyle ??
+              TextStyle(
+                fontSize: 14.sp,
+                color: ColorApp.labelColor,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.8.w,
+              ),
         ),
-        const SizedBox(height: 8),
-
+        SizedBox(height: 8.h),
         TextFormField(
           controller: controller,
           validator: validator,
           keyboardType: keyboardType,
           cursorColor: ColorApp.textColor,
           maxLines: keyboardType == TextInputType.multiline ? 3 : 1,
+          style: TextStyle(fontSize: 14.sp),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle:
-                hintStyle ??
-                const TextStyle(fontSize: 14, color: ColorApp.hintColor),
+            hintStyle: hintStyle ??
+                TextStyle(fontSize: 14.sp, color: ColorApp.hintColor),
             prefixIcon: icon != null
                 ? Padding(
-                    padding: const EdgeInsets.all(12),
+                    padding: EdgeInsets.all(12.w),
                     child: Image.asset(
                       icon!,
-                      width: widthIcon,
-                      height: heightIcon,
+                      width: widthIcon?.w,
+                      height: heightIcon?.h,
                       fit: BoxFit.contain,
                     ),
                   )
                 : null,
             suffixIcon: suffixIcon != null
-                 ? Padding(
-                    padding: const EdgeInsets.all(12),
+                ? Padding(
+                    padding: EdgeInsets.all(12.w),
                     child: Image.asset(
                       suffixIcon!,
-                      width: widthIcon,
-                      height: heightIcon,
+                      width: widthIcon?.w,
+                      height: heightIcon?.h,
                       fit: BoxFit.contain,
                     ),
                   )
                 : null,
             filled: true,
-
             fillColor: fieldFillColor,
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
               borderSide: const BorderSide(color: borderSideColor),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
               borderSide: const BorderSide(color: primaryGreen, width: 1.2),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
               borderSide: const BorderSide(color: Colors.redAccent, width: 1),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
               borderSide: const BorderSide(color: Colors.redAccent, width: 1.5),
             ),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 16,
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 16.w,
+              vertical: 16.h,
             ),
           ),
         ),
@@ -117,3 +116,4 @@ class CustomTextFormFieldCore extends StatelessWidget {
     );
   }
 }
+

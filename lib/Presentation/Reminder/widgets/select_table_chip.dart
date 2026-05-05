@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SelectableChip extends StatelessWidget {
   final String label;
@@ -17,29 +18,25 @@ class SelectableChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
         decoration: BoxDecoration(
           color: isSelected ? const Color(0xFFE8F5F0) : Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.r),
           border: Border.all(
-            color: isSelected
-                ? const Color(0xFF2EAF8A)
-                : const Color(0xFFE0E0E0),
-            width: isSelected ? 1.5 : 0.5,
+            color: isSelected ? const Color(0xFF2EAF8A) : const Color(0xFFE0E0E0),
+            width: isSelected ? 1.5.w : 0.5.w,
           ),
         ),
-        
         child: Text(
           label,
           style: TextStyle(
-            fontSize: 13,
+            fontSize: 13.sp,
             fontWeight: FontWeight.w500,
-            color: isSelected
-                ? const Color(0xFF2EAF8A)
-                : const Color(0xFF1A1A2E),
+            color: isSelected ? const Color(0xFF2EAF8A) : const Color(0xFF1A1A2E),
           ),
         ),
       ),
     );
   }
 }
+

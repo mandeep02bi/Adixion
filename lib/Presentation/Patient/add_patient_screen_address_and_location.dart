@@ -1,5 +1,6 @@
 import 'package:doctor/widgets/Add_patient/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddPatientScreenAddressAndLocation extends StatelessWidget {
   const AddPatientScreenAddressAndLocation({super.key});
@@ -8,26 +9,22 @@ class AddPatientScreenAddressAndLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 20),
-
-        const SizedBox(height: 20),
-
-        CustomFormField(
+        SizedBox(height: 20.h),
+        const CustomFormField(
           label: 'Street address',
           hint: 'House No., Street, Area...',
           keyboardType: TextInputType.multiline,
         ),
-
-        const SizedBox(height: 20),
-
+        SizedBox(height: 20.h),
         CustomFormField(
           label: 'City / District',
           hint: 'Jaipur',
           icon: 'assets/images/Icons/Patient/Add/Skyscraper.png',
-          widthIcon: 18,
-          heightIcon: 18,
+          widthIcon: 18.w,
+          heightIcon: 18.h,
         ),
       ],
     );
   }
 }
+

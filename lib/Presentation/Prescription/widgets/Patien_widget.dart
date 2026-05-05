@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PatientWidgets extends StatelessWidget {
   const PatientWidgets({super.key});
@@ -6,59 +7,46 @@ class PatientWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(18.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            blurRadius: 10.r,
+            offset: Offset(0, 4.h),
           ),
         ],
       ),
       child: Row(
         children: [
-          // ClipRRect(
-          //   borderRadius: BorderRadius.circular(12),
-          //   child: Image.asset(
-          //     ImageAssets.at,
-          //     width: 40.51,
-          //     height: 38.51,
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
-           CircleAvatar(
-                                  radius: 22,
-                                  backgroundColor: Colors.blueGrey,
-                                  child: const Text("AT",
-                                      style: TextStyle(color: Colors.white)),
-                                ),
-
-    
-          const SizedBox(width: 12),
-    
+          CircleAvatar(
+            radius: 22.r,
+            backgroundColor: Colors.blueGrey,
+            child: Text("AT",
+                style: TextStyle(color: Colors.white, fontSize: 14.sp)),
+          ),
+          SizedBox(width: 12.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Rishabh Singh',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
                 ),
-                SizedBox(height: 4),
+                SizedBox(height: 4.h),
                 Text(
                   'PT-001 • Age 28 Years',
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                  style: TextStyle(fontSize: 12.sp, color: Colors.grey),
                 ),
               ],
             ),
           ),
-    
-          // Image.asset(ImageAssets.more, width: 10, height: 5),
         ],
       ),
     );
   }
-}
+}

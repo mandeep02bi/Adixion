@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomGenderSelection extends StatefulWidget {
   final Function(String) onGenderChanged;
@@ -30,7 +31,7 @@ class _CustomGenderSelectionState extends State<CustomGenderSelection> {
     return Row(
       children: genders.map((gender) {
         bool isSelected = gender == selectedGender;
-        
+
         return GestureDetector(
           onTap: () {
             setState(() {
@@ -40,17 +41,16 @@ class _CustomGenderSelectionState extends State<CustomGenderSelection> {
           },
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
-            margin: const EdgeInsets.only(right: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+            margin: EdgeInsets.only(right: 10.w),
+            padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 12.h),
             decoration: BoxDecoration(
               color: isSelected ? const Color(0xFFE6F7F2) : Colors.white,
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(25.r),
               border: Border.all(
                 color: isSelected
-                    // ignore: deprecated_member_use
                     ? const Color(0xFF0F6E56).withOpacity(0.3)
                     : Colors.grey.shade200,
-                width: isSelected ? 1.5 : 1,
+                width: isSelected ? 1.5.w : 1.w,
               ),
             ),
             child: Text(
@@ -58,7 +58,7 @@ class _CustomGenderSelectionState extends State<CustomGenderSelection> {
               style: TextStyle(
                 color: isSelected ? const Color(0xFF0F6E56) : Colors.grey,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                fontSize: 14,
+                fontSize: 14.sp,
               ),
             ),
           ),
@@ -66,4 +66,4 @@ class _CustomGenderSelectionState extends State<CustomGenderSelection> {
       }).toList(),
     );
   }
-}
+}

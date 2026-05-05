@@ -2,6 +2,7 @@ import 'package:doctor/core/Theme/color_app.dart';
 import 'package:doctor/Core/helper/image_assets.dart';
 import 'package:doctor/Presentation/Prescription/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomHeaderRecordes extends StatefulWidget {
   final String title;
@@ -36,7 +37,7 @@ class _CustomHeaderRecordesState extends State<CustomHeaderRecordes> {
         Stack(
           clipBehavior: Clip.none,
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               child: Stack(
                 children: [
@@ -47,45 +48,45 @@ class _CustomHeaderRecordesState extends State<CustomHeaderRecordes> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 30),
+                        SizedBox(height: 30.h),
                         Row(
                           children: [
                             GestureDetector(
                               onTap: () => Navigator.pop(context),
                               child: Container(
-                                width: 35,
-                                height: 35,
+                                width: 35.r,
+                                height: 35.r,
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8.r),
                                 ),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.arrow_back_ios_new,
                                   color: Colors.white,
-                                  size: 18,
+                                  size: 18.r,
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 12),
+                            SizedBox(width: 12.w),
                             Text(
                               widget.title,
-                              style: const TextStyle(
-                                fontSize: 20,
+                              style: TextStyle(
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16.h),
                         Row(
                           children: [
-                            Expanded(
-                              child: const CustomTextFormField(
+                            const Expanded(
+                              child: CustomTextFormField(
                                 label: '',
                                 hint: 'Type here to search',
                                 hintStyle: TextStyle(
@@ -100,19 +101,19 @@ class _CustomHeaderRecordesState extends State<CustomHeaderRecordes> {
                                 focusedBorderColor: ColorApp.scaffoldColor,
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            SizedBox(width: 8.w),
                             Container(
-                              height: 44,
-                              width: 52,
+                              height: 44.h,
+                              width: 52.w,
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                               child: Center(
                                 child: Text(
                                   'Go',
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.bold,
                                     color: ColorApp.hintColor,
                                   ),
@@ -121,22 +122,22 @@ class _CustomHeaderRecordesState extends State<CustomHeaderRecordes> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16.h),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
                               _buildTab('Prescriptions', 0),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               _buildTab('Certificates', 1),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               _buildTab('Instructions', 2),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               _buildTab('Invoices', 3),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16.h),
                       ],
                     ),
                   ),
@@ -145,9 +146,9 @@ class _CustomHeaderRecordesState extends State<CustomHeaderRecordes> {
             ),
             if (widget.bottomCard != null)
               Positioned(
-                bottom: -50,
-                left: 16,
-                right: 16,
+                bottom: -50.h,
+                left: 16.w,
+                right: 16.w,
                 child: widget.bottomCard!,
               ),
           ],
@@ -161,18 +162,18 @@ class _CustomHeaderRecordesState extends State<CustomHeaderRecordes> {
     return GestureDetector(
       onTap: () => _onTabTap(index),
       child: Container(
-        height: 44,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        height: 44.h,
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         decoration: BoxDecoration(
           color: active ? Colors.white : Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
-          border: active ? null : Border.all(color: Colors.white, width: 1.5),
+          borderRadius: BorderRadius.circular(10.r),
+          border: active ? null : Border.all(color: Colors.white, width: 1.5.w),
         ),
         child: Center(
           child: Text(
             label,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w600,
               color: active ? ColorApp.hintColor : Colors.white,
             ),
@@ -182,3 +183,4 @@ class _CustomHeaderRecordesState extends State<CustomHeaderRecordes> {
     );
   }
 }
+

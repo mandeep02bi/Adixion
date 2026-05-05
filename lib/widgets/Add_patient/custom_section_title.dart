@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSectionTitle extends StatelessWidget {
   final String? icon;
@@ -22,16 +23,15 @@ class CustomSectionTitle extends StatelessWidget {
       children: [
         if (icon != null)
           Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Image.asset(icon!, width: widthIcon, height: heightIcon),
+            padding: EdgeInsets.only(right: 10.w),
+            child: Image.asset(icon!, width: widthIcon?.w, height: heightIcon?.h),
           ),
         Text(
           title,
-          style:
-              textStyle ??
-              const TextStyle(
-                color: Color(0xFF0F6E56),
-                fontSize: 16,
+          style: textStyle ??
+              TextStyle(
+                color: const Color(0xFF0F6E56),
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w600,
               ),
         ),
@@ -39,3 +39,4 @@ class CustomSectionTitle extends StatelessWidget {
     );
   }
 }
+

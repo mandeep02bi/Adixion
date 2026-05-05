@@ -1,5 +1,6 @@
 import 'package:doctor/Core/helper/image_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   final int selectedIndex;
@@ -17,11 +18,12 @@ class BottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
-      decoration: const BoxDecoration(
+      height: 70.h,
+      decoration: BoxDecoration(
         color: Colors.white,
-        border: Border(top: BorderSide(color: Color(0xFF2ECC8E), width: 1.5)),
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
+        border:
+            Border(top: BorderSide(color: const Color(0xFF2ECC8E), width: 1.5.w)),
+        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10)],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -47,16 +49,16 @@ class BottomNavigationBarWidget extends StatelessWidget {
         children: [
           Image.asset(
             assetPath,
-            width: 26,
-            height: 26,
-            color: color, // ← بيلوّن الـ SVG/PNG بلون الـ active أو inactive
+            width: 26.w,
+            height: 26.h,
+            color: color,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4.h),
           Text(
             label,
             style: TextStyle(
               color: color,
-              fontSize: 11,
+              fontSize: 11.sp,
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
             ),
           ),
@@ -65,3 +67,4 @@ class BottomNavigationBarWidget extends StatelessWidget {
     );
   }
 }
+

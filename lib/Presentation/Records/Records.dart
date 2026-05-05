@@ -3,6 +3,7 @@ import 'package:doctor/Core/helper/image_assets.dart';
 import 'package:doctor/Presentation/Records/widgets/container_body.dart';
 import 'package:doctor/Presentation/Records/widgets/custom_header_recordes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Records extends StatelessWidget {
   const Records({super.key});
@@ -22,7 +23,7 @@ class Records extends StatelessWidget {
           child: Column(
             children: [
               const CustomHeaderRecordes(title: 'Kumar’s Records'),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
               const ContainerBody(
                 name: 'Kumar',
                 age: '31yr',
@@ -37,3 +38,4 @@ class Records extends StatelessWidget {
     );
   }
 }
+

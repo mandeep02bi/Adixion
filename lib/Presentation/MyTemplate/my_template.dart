@@ -2,6 +2,7 @@ import 'package:doctor/Core/helper/image_assets.dart';
 import 'package:doctor/core/Theme/color_app.dart';
 import 'package:doctor/Presentation/MyTemplate/widgets/custom_header_template.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyTemplate extends StatelessWidget {
   const MyTemplate({super.key});
@@ -21,7 +22,7 @@ class MyTemplate extends StatelessWidget {
           child: Column(
             children: [
               const CustomHeaderTemplate(title: 'My Template'),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
             ],
           ),
         ),
@@ -29,3 +30,4 @@ class MyTemplate extends StatelessWidget {
     );
   }
 }
+

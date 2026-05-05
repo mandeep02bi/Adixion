@@ -1,5 +1,6 @@
 import 'package:doctor/Presentation/AuthScreen/LoginSC.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Onboardsc extends StatefulWidget {
@@ -41,10 +42,12 @@ class _OnboardscState extends State<Onboardsc> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool("seenOnboard", true);
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const Loginsc()),
-      );
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const Loginsc()),
+        );
+      }
     }
   }
 
@@ -52,10 +55,12 @@ class _OnboardscState extends State<Onboardsc> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool("seenOnboard", true);
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => const Loginsc()),
-    );
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const Loginsc()),
+      );
+    }
   }
 
   @override
@@ -116,9 +121,9 @@ class _OnboardscState extends State<Onboardsc> {
 
           /// Bottom Controls
           Positioned(
-            bottom: 40,
-            left: 20,
-            right: 20,
+            bottom: 40.h,
+            left: 20.w,
+            right: 20.w,
             child: Column(
               children: [
                 /// Dot Indicator
@@ -128,50 +133,48 @@ class _OnboardscState extends State<Onboardsc> {
                     data.length,
                     (index) => AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      width: currentPage == index ? 20 : 8,
-                      height: 8,
+                      margin: EdgeInsets.symmetric(horizontal: 4.w),
+                      width: currentPage == index ? 20.w : 8.w,
+                      height: 8.h,
                       decoration: BoxDecoration(
                         color: currentPage == index
                             ? Colors.purple
                             : Colors.grey,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 /// Next Button
                 SizedBox(
                   width: double.infinity,
-                  height: 50,
+                  height: 50.h,
                   child: ElevatedButton(
                     onPressed: nextPage,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
                     ),
                     child: Text(
-                      currentPage == data.length - 1
-                          ? "Get Started"
-                          : "Next",
-                      style: const TextStyle(color: Colors.white),
+                      currentPage == data.length - 1 ? "Get Started" : "Next",
+                      style: TextStyle(color: Colors.white, fontSize: 16.sp),
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
 
                 /// Skip Button
                 TextButton(
                   onPressed: skip,
-                  child: const Text(
+                  child: Text(
                     "Skip",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Colors.black, fontSize: 14.sp),
                   ),
                 ),
               ],
@@ -189,58 +192,60 @@ class _OnboardscState extends State<Onboardsc> {
     required String desc,
     required int index,
   }) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 100),
-      child: Column(
-        children: [
-          /// Animated Image
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut,
-            transform: Matrix4.translationValues(
-              currentPage == index ? 0 : 200,
-              0,
-              0,
-            ),
-            child: CircleAvatar(
-              radius: 150,
-              backgroundImage: AssetImage(image),
-            ),
-          ),
-
-          const SizedBox(height: 30),
-
-          /// Animated Title
-          AnimatedOpacity(
-            duration: const Duration(milliseconds: 500),
-            opacity: currentPage == index ? 1 : 0,
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.only(top: 80.h, bottom: 150.h), // Extra bottom padding for buttons
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            /// Animated Image
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+              transform: Matrix4.translationValues(
+                currentPage == index ? 0 : 200.w,
+                0,
+                0,
+              ),
+              child: CircleAvatar(
+                radius: 100.r, // Reduced radius slightly
+                backgroundImage: AssetImage(image),
               ),
             ),
-          ),
-
-          const SizedBox(height: 10),
-
-          /// Animated Description
-          AnimatedOpacity(
-            duration: const Duration(milliseconds: 700),
-            opacity: currentPage == index ? 1 : 0,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+            SizedBox(height: 20.h),
+            /// Animated Title
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 500),
+              opacity: currentPage == index ? 1 : 0,
               child: Text(
-                desc,
+                title,
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.grey, fontSize: 16),
+                style: TextStyle(
+                  fontSize: 22.sp,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 10.h),
+            /// Animated Description
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 700),
+              opacity: currentPage == index ? 1 : 0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.w),
+                child: Text(
+                  desc,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey, fontSize: 14.sp),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+
 

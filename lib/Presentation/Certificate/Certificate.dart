@@ -4,6 +4,7 @@ import 'package:doctor/Presentation/Certificate/AddCertificate.dart';
 import 'package:doctor/widgets/Certificate/Certificcatecard.dart';
 import 'package:doctor/widgets/Common/Appheader.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class Certificate extends StatefulWidget {
@@ -14,13 +15,12 @@ class Certificate extends StatefulWidget {
 }
 
 class _CertificateState extends State<Certificate> {
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFE9F1F6),
       body: Column(
         children: [
-
           /// 🔷 HEADER
           AppHeader(
             title: "Certificate",
@@ -28,35 +28,35 @@ class _CertificateState extends State<Certificate> {
             onAdd: () {
               Get.to(Addcertificate());
             },
-            backgroundImage: "assets/images/background/P.jpg"
+            backgroundImage: "assets/images/background/P.jpg",
           ),
 
           /// 👤 USER TILE
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16.r),
             child: Container(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(12.r),
               decoration: BoxDecoration(
                 color: const Color(0xFFEFF3F6),
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(14.r),
               ),
               child: Row(
                 children: [
-                  // const CircleAvatar(
-                  //   backgroundColor: Color(0xFF4C6EF5),
-                  //   child: Text("AT"),
-                  // ),
-                   CircleAvatar(
-                                  radius: 22,
-                                  backgroundColor: Colors.blueGrey,
-                                  child: const Text("AT",
-                                      style: TextStyle(color: Colors.white)),
-                                ),
-
-                  const SizedBox(width: 10),
-                  const Text(
+                  CircleAvatar(
+                    radius: 22.r,
+                    backgroundColor: Colors.blueGrey,
+                    child: Text(
+                      "AT",
+                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                    ),
+                  ),
+                  SizedBox(width: 10.w),
+                  Text(
                     "Rishabh Singh",
-                    style: TextStyle(fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.sp,
+                    ),
                   )
                 ],
               ),
@@ -64,38 +64,27 @@ class _CertificateState extends State<Certificate> {
           ),
 
           /// 📄 TITLE
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 "Certificate",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  fontSize: 16.sp,
                 ),
               ),
             ),
           ),
 
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
 
           /// 📋 LIST
-          // Expanded(
-          //   child: ListView(
-          //     padding: const EdgeInsets.symmetric(horizontal: 16),
-          //     children: const [
-          //       CertificateCard(title: "Cert", date: "15 April 2026"),
-          //       CertificateCard(title: "Cert", date: "12 April 2026"),
-          //       CertificateCard(title: "Cert", date: "12 April 2026"),
-          //       CertificateCard(title: "Cert", date: "12 April 2026"),
-          //     ],
-          //   ),
-          // )
           Expanded(
             child: FutureBuilder<List<CertificateModel>>(
               future: MedicineDatabase.getAllCertificates(),
               builder: (context, snapshot) {
-
                 /// ⏳ LOADING
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -103,19 +92,23 @@ class _CertificateState extends State<Certificate> {
 
                 /// ❌ ERROR
                 if (snapshot.hasError) {
-                  return const Center(child: Text("Error loading data"));
+                  return Center(
+                      child: Text("Error loading data",
+                          style: TextStyle(fontSize: 14.sp)));
                 }
 
                 /// 📭 EMPTY
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Center(child: Text("No Certificates Found"));
+                  return Center(
+                      child: Text("No Certificates Found",
+                          style: TextStyle(fontSize: 14.sp)));
                 }
 
                 final list = snapshot.data!;
 
                 /// ✅ DATA LIST
                 return ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
                   itemCount: list.length,
                   itemBuilder: (context, index) {
                     final item = list[index];
@@ -133,16 +126,27 @@ class _CertificateState extends State<Certificate> {
       ),
     );
   }
-    String _formatDate(String date) {
+
+  String _formatDate(String date) {
     final d = DateTime.parse(date);
     return "${d.day} ${_month(d.month)} ${d.year}";
   }
 
   String _month(int m) {
     const months = [
-      "Jan","Feb","Mar","Apr","May","Jun",
-      "Jul","Aug","Sep","Oct","Nov","Dec"
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
     ];
     return months[m - 1];
   }
-}
+}

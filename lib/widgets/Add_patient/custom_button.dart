@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -39,11 +40,11 @@ class CustomButton extends StatelessWidget {
         onTap: onPressed,
         behavior: HitTestBehavior.opaque,
         child: Container(
-          width: width ?? double.infinity,
-          height: height ?? 60,
+          width: width?.w ?? double.infinity,
+          height: height?.h ?? 60.h,
           decoration: BoxDecoration(
             color: buttonColor ?? const Color(0xFF8D34B0),
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15.r),
             border: border,
           ),
           child: Row(
@@ -52,12 +53,11 @@ class CustomButton extends StatelessWidget {
               if (assetIcon != null) ...[
                 Image.asset(
                   assetIcon!,
-                  width: widthicon ?? 16,
-                  height: heighticon ?? 15.83,
+                  width: widthicon?.w ?? 16.w,
+                  height: heighticon?.h ?? 15.83.h,
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: 10.w),
               ],
-
               if (subText != null)
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -65,21 +65,19 @@ class CustomButton extends StatelessWidget {
                   children: [
                     Text(
                       text,
-                      style:
-                          textStyle ??
-                          const TextStyle(
-                            color: Color(0xFFEDEDED),
-                            fontSize: 16,
+                      style: textStyle ??
+                          TextStyle(
+                            color: const Color(0xFFEDEDED),
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     Text(
                       subText!,
-                      style:
-                          subTextStyle ??
-                          const TextStyle(
-                            color: Color(0xFFEDEDED),
-                            fontSize: 12,
+                      style: subTextStyle ??
+                          TextStyle(
+                            color: const Color(0xFFEDEDED),
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
                           ),
                     ),
@@ -88,18 +86,16 @@ class CustomButton extends StatelessWidget {
               else
                 Text(
                   text,
-                  style:
-                      textStyle ??
-                      const TextStyle(
-                        color: Color(0xFFEDEDED),
-                        fontSize: 16,
+                  style: textStyle ??
+                      TextStyle(
+                        color: const Color(0xFFEDEDED),
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
-
               if (icon != null) ...[
-                const SizedBox(width: 10),
-                Icon(icon, color: Colors.white, size: 25),
+                SizedBox(width: 10.w),
+                Icon(icon, color: Colors.white, size: 25.r),
               ],
             ],
           ),
@@ -108,3 +104,4 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
+

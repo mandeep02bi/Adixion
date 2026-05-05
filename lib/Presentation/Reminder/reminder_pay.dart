@@ -1,4 +1,3 @@
- 
 import 'package:doctor/core/Theme/color_app.dart';
 import 'package:doctor/Core/helper/image_assets.dart';
 import 'package:doctor/Presentation/Reminder/widgets/custom_header_reminder.dart';
@@ -6,6 +5,7 @@ import 'package:doctor/Presentation/Reminder/widgets/date_reminder_picker.dart';
 import 'package:doctor/widgets/Add_patient/custom_section_title.dart';
 import 'package:doctor/widgets/Add_patient/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ReminderPay extends StatelessWidget {
   const ReminderPay({super.key});
@@ -26,45 +26,45 @@ class ReminderPay extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const CustomHeaderReminder(title: 'Set Reminder'),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: 70,
+                          height: 70.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(16.r),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.05),
-                                blurRadius: 8,
-                                offset: const Offset(0, 2),
+                                blurRadius: 8.r,
+                                offset: Offset(0, 2.h),
                               ),
                             ],
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            padding: EdgeInsets.symmetric(horizontal: 12.w),
                             child: Row(
                               children: [
                                 Image.asset(
                                   ImageAssets.at,
-                                  width: 40.51,
-                                  height: 38.51,
+                                  width: 40.w,
+                                  height: 38.h,
                                 ),
-                                const SizedBox(width: 12),
+                                SizedBox(width: 12.w),
                                 Expanded(
                                   child: Text(
                                     'Rishabh Singh',
-                                    style: const TextStyle(
-                                      fontSize: 16,
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0xFF1A1A2E),
+                                      color: const Color(0xFF1A1A2E),
                                     ),
                                   ),
                                 ),
@@ -72,61 +72,60 @@ class ReminderPay extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 15),
-                        const CustomSectionTitle(
+                        SizedBox(height: 15.h),
+                        CustomSectionTitle(
                           icon: ImageAssets.drugs,
                           title: 'Payment',
-                          widthIcon: 18,
-                          heightIcon: 18,
+                          widthIcon: 18.w,
+                          heightIcon: 18.h,
                         ),
-                        SizedBox(height: 10),
-                         CustomFormField(
+                        SizedBox(height: 10.h),
+                        CustomFormField(
                           label: 'TITLE',
                           hint: 'Select Blood Group',
                           hintStyle: TextStyle(
-                            fontSize: 11,
+                            fontSize: 11.sp,
                             color: ColorApp.labelTextColor,
                           ),
                           fieldFillColor: ColorApp.scaffoldColor,
                           icon: ImageAssets.blood,
-                          heightIcon: 18,
-                          widthIcon: 18,
+                          heightIcon: 18.h,
+                          widthIcon: 18.w,
                         ),
-                        SizedBox(height: 10),
-                         CustomFormField(
+                        SizedBox(height: 10.h),
+                        CustomFormField(
                           label: 'DESCRIPTION',
                           hint: 'e.g. Penicillin, Peanuts, Latex...',
                           hintStyle: TextStyle(
-                            fontSize: 11,
+                            fontSize: 11.sp,
                             color: ColorApp.labelTextColor,
                           ),
                           fieldFillColor: ColorApp.scaffoldColor,
                           keyboardType: TextInputType.multiline,
                         ),
-                        const SizedBox(height: 15),
-                         CustomFormField(
+                        SizedBox(height: 15.h),
+                        CustomFormField(
                           label: 'TITLE',
                           hint: 'Select Blood Group',
                           hintStyle: TextStyle(
-                            fontSize: 11,
+                            fontSize: 11.sp,
                             color: ColorApp.labelTextColor,
                           ),
                           fieldFillColor: ColorApp.scaffoldColor,
                           icon: ImageAssets.blood,
-                          heightIcon: 18,
-                          widthIcon: 18,
+                          heightIcon: 18.h,
+                          widthIcon: 18.w,
                         ),
-                        const SizedBox(height: 15),
-
-                        const Text(
+                        SizedBox(height: 15.h),
+                        Text(
                           'Select Date',
                           style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF2C2C2C),
+                            fontSize: 18.sp,
+                            color: const Color(0xFF2C2C2C),
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        SizedBox(height: 15.h),
                         const DateReminderPicker(),
                       ],
                     ),
@@ -140,3 +139,4 @@ class ReminderPay extends StatelessWidget {
     );
   }
 }
+

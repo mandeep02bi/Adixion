@@ -9,6 +9,7 @@ import 'package:doctor/widgets/Add_patient/custom_text_field.dart';
 import 'package:doctor/Presentation/Prescription/widgets/Patien_widget.dart';
 import 'package:doctor/Presentation/Prescription/widgets/empty_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Addperscriptionthirddr extends StatefulWidget {
   const Addperscriptionthirddr({super.key});
@@ -40,43 +41,38 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
         Expanded(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'PATIENT',
                     style: TextStyle(
-                      fontSize: 13,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF808080),
-                      letterSpacing: 1,
+                      color: const Color(0xFF808080),
+                      letterSpacing: 1.w,
                     ),
                   ),
-
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.h),
                   const PatientWidgets(),
-
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.h),
                   CustomFormField(
                     label: 'DIAGNOSIS By Staff',
                     hint: 'Viral Fever & Throat Infection',
                     fieldFillColor: const Color(0xFFF9FCFF),
                     icon: ImageAssets.stethoscope,
-                    widthIcon: 18,
-                    heightIcon: 18,
+                    widthIcon: 18.w,
+                    heightIcon: 18.h,
                   ),
-                  const SizedBox(height: 15),
-
+                  SizedBox(height: 15.h),
                   CustomSectionTitle(
                     icon: ImageAssets.lab,
                     title: 'Lab Test',
-                    widthIcon: 25,
-                    heightIcon: 23,
+                    widthIcon: 25.w,
+                    heightIcon: 23.h,
                   ),
-                  const SizedBox(height: 10),
-
-                  // 4. استخدام المتغير هنا
+                  SizedBox(height: 10.h),
                   FutureBuilder<List<MedicineModel>>(
                     future: _labTestsFuture,
                     builder: (context, snapshot) {
@@ -100,27 +96,22 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                           return Container(
                             decoration: BoxDecoration(
                               color: const Color(0xFFF9FCFF),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.r),
                               border: Border.all(
                                 color: Colors.grey.withOpacity(0.1),
                               ),
                             ),
-                            margin: const EdgeInsets.only(
-                              bottom: 12,
-                            ), // ضفت دي عشان التحاليل متلزقش في بعض
-                            padding: const EdgeInsets.all(
-                              16,
-                            ), // ضفت دي عشان الشكل يبقى متناسق زي الأدوية
+                            margin: EdgeInsets.only(bottom: 12.h),
+                            padding: EdgeInsets.all(16.w),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Image.asset(
                                   ImageAssets.baneg,
-                                  width: 30,
-                                  height: 30,
+                                  width: 30.w,
+                                  height: 30.h,
                                 ),
-                                const SizedBox(width: 12),
-
+                                SizedBox(width: 12.w),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
@@ -131,10 +122,10 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                                           Expanded(
                                             child: Text(
                                               med.medicineName,
-                                              style: const TextStyle(
-                                                fontSize: 18,
+                                              style: TextStyle(
+                                                fontSize: 18.sp,
                                                 fontWeight: FontWeight.bold,
-                                                color: Color(0xFF333333),
+                                                color: const Color(0xFF333333),
                                               ),
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -145,16 +136,15 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                                                   .deleteMedicine(med.id!);
                                               _refreshData();
                                             },
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.delete_outline,
-                                              color: Color(0xFFE57373),
-                                              size: 24,
+                                              color: const Color(0xFFE57373),
+                                              size: 24.r,
                                             ),
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(height: 8),
-
+                                      SizedBox(height: 8.h),
                                       Row(
                                         children: [
                                           RichText(
@@ -163,10 +153,10 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                                                 TextSpan(
                                                   text:
                                                       "How: ${med.instruction}",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                     color: Colors.purple,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 13,
+                                                    fontSize: 13.sp,
                                                   ),
                                                 ),
                                               ],
@@ -184,34 +174,30 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
                       );
                     },
                   ),
-
-                  const SizedBox(height: 15),
-
-                  // 5. شلنا كلمة const وضفنا onAdded
+                  SizedBox(height: 15.h),
                   ContainerMedicen(
                     title: 'Add Lab Test',
                     nameOf: 'Name of Lab Test',
                     name: 'Lab Test',
                     showMedicineFields: false,
-                    onAdded:
-                        _refreshData, // استدعاء دالة الريفرش عشان التحليل يظهر فوراً
+                    onAdded: _refreshData,
                   ),
-                  const SizedBox(height: 25),
+                  SizedBox(height: 25.h),
                   CustomButton(
                     onPressed: () {},
-                    height: 45.83,
-                    width: 130,
+                    height: 45.h,
+                    width: 130.w,
                     assetIcon: ImageAssets.drft,
                     text: 'Prescribe',
                     textStyle: TextStyle(
-                      fontSize: 11,
+                      fontSize: 11.sp,
                       fontWeight: FontWeight.w500,
                       color: ColorApp.textColor,
                     ),
                     buttonColor: Colors.transparent,
-                    border: Border.all(color: ColorApp.textColor, width: 1),
+                    border: Border.all(color: ColorApp.textColor, width: 1.w),
                   ),
-                  const SizedBox(height: 60),
+                  SizedBox(height: 60.h),
                 ],
               ),
             ),
@@ -221,3 +207,4 @@ class _AddperscriptionthirddrState extends State<Addperscriptionthirddr> {
     );
   }
 }
+

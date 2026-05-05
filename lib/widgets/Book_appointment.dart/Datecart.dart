@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DateCard extends StatelessWidget {
   final String day;
@@ -15,22 +16,24 @@ class DateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70,
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      width: 70.w,
+      padding: EdgeInsets.symmetric(vertical: 12.h),
       decoration: BoxDecoration(
         color: active ? Colors.white : Colors.white70,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(14.r),
       ),
       child: Column(
         children: [
-          Text(day, style: const TextStyle(color: Colors.grey)),
-          const SizedBox(height: 6),
+          Text(day,
+              style: TextStyle(color: Colors.grey, fontSize: 12.sp)),
+          SizedBox(height: 6.h),
           Text(date,
-              style: const TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.bold)),
-          const Text("Mar", style: TextStyle(color: Colors.grey)),
+              style: TextStyle(
+                  fontSize: 18.sp, fontWeight: FontWeight.bold)),
+          Text("Mar",
+              style: TextStyle(color: Colors.grey, fontSize: 12.sp)),
         ],
       ),
     );
   }
-}
+}

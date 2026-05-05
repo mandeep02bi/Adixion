@@ -1,5 +1,6 @@
 import 'package:doctor/Presentation/Onboarding/Onboardsc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 
@@ -12,7 +13,6 @@ class AnimatedSplashScreen extends StatefulWidget {
 
 class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     with SingleTickerProviderStateMixin {
-
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
@@ -41,7 +41,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
 
     /// Navigate after 3 seconds
     Timer(const Duration(seconds: 3), () {
-      Get.to(Onboardsc()); // change route
+      Get.to(const Onboardsc()); // change route
     });
   }
 
@@ -56,7 +56,6 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
     return Scaffold(
       body: Stack(
         children: [
-
           /// Background Image
           Positioned.fill(
             child: Image.asset(
@@ -80,7 +79,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
                   scale: _scaleAnimation,
                   child: Image.asset(
                     "assets/images/logo/logo.png",
-                    width: 220,
+                    width: 220.w,
                   ),
                 ),
               ),
@@ -90,4 +89,4 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
       ),
     );
   }
-}
+}

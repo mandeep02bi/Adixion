@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DashedBorderContainer extends StatelessWidget {
   final Widget child;
@@ -16,17 +16,17 @@ class DashedBorderContainer extends StatelessWidget {
 class DashedBorderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    double dashWidth = 10;
-    double dashSpace = 4;
+    double dashWidth = 10.w;
+    double dashSpace = 4.w;
 
     final paint = Paint()
-      ..color = Color(0xFFB8CDC7)
-      ..strokeWidth = 2
+      ..color = const Color(0xFFB8CDC7)
+      ..strokeWidth = 2.w
       ..style = PaintingStyle.stroke;
 
     final rect = RRect.fromRectAndRadius(
       Offset.zero & size,
-      Radius.circular(20),
+      Radius.circular(20.r),
     );
 
     final path = Path()..addRRect(rect);
@@ -46,3 +46,4 @@ class DashedBorderPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
+

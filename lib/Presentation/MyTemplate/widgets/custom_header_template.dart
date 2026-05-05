@@ -6,6 +6,7 @@ import 'package:doctor/Presentation/MyTemplate/widgets/lab_template.dart';
 import 'package:doctor/Presentation/MyTemplate/widgets/medicine_template.dart';
 import 'package:doctor/widgets/Add_patient/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomHeaderTemplate extends StatefulWidget {
   final String title;
@@ -54,7 +55,7 @@ class _CustomHeaderTemplateState extends State<CustomHeaderTemplate> {
           clipBehavior: Clip.none,
           children: [
             SizedBox(
-              height: 152,
+              height: 152.h,
               width: double.infinity,
               child: Stack(
                 fit: StackFit.expand,
@@ -64,10 +65,10 @@ class _CustomHeaderTemplateState extends State<CustomHeaderTemplate> {
                     fit: BoxFit.cover,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Column(
                       children: [
-                        const SizedBox(height: 30),
+                        SizedBox(height: 30.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -77,15 +78,15 @@ class _CustomHeaderTemplateState extends State<CustomHeaderTemplate> {
                                   onTap: () => Navigator.pop(context),
                                   child: Image.asset(
                                     ImageAssets.backBottom,
-                                    width: 35,
-                                    height: 35.61,
+                                    width: 35.w,
+                                    height: 35.h,
                                   ),
                                 ),
-                                const SizedBox(width: 12),
+                                SizedBox(width: 12.w),
                                 Text(
                                   widget.title,
-                                  style: const TextStyle(
-                                    fontSize: 18,
+                                  style: TextStyle(
+                                    fontSize: 18.sp,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
@@ -114,20 +115,20 @@ class _CustomHeaderTemplateState extends State<CustomHeaderTemplate> {
                                     name: ' Consent',
                                     textButtom: 'Consent',
                                     iconButtom: ImageAssets.consent,
-                                    customButtom: SizedBox.shrink(),
+                                    customButtom: const SizedBox.shrink(),
                                     showMedicineFields: false,
                                   );
                                 }
                               },
                               child: Image.asset(
                                 ImageAssets.addBottom,
-                                width: 35,
-                                height: 35.61,
+                                width: 35.w,
+                                height: 35.h,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
@@ -136,7 +137,7 @@ class _CustomHeaderTemplateState extends State<CustomHeaderTemplate> {
                                 onPressed: () => _onTabTap(0),
                                 text: 'Medicine',
                                 textStyle: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                   color: _isActive(0)
                                       ? ColorApp.textColor
@@ -149,20 +150,20 @@ class _CustomHeaderTemplateState extends State<CustomHeaderTemplate> {
                                     ? null
                                     : Border.all(
                                         color: Colors.white,
-                                        width: 1.5,
+                                        width: 1.5.w,
                                       ),
                                 assetIcon: ImageAssets.drugs,
-                                heighticon: 18,
-                                widthicon: 18,
-                                height: 45,
-                                width: 123,
+                                heighticon: 18.h,
+                                widthicon: 18.w,
+                                height: 45.h,
+                                width: 123.w,
                               ),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               CustomButton(
                                 onPressed: () => _onTabTap(1),
                                 text: 'Lab Test',
                                 textStyle: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                   color: _isActive(1)
                                       ? ColorApp.textColor
@@ -175,20 +176,20 @@ class _CustomHeaderTemplateState extends State<CustomHeaderTemplate> {
                                     ? null
                                     : Border.all(
                                         color: Colors.white,
-                                        width: 1.5,
+                                        width: 1.5.w,
                                       ),
                                 assetIcon: ImageAssets.lab,
-                                heighticon: 25,
-                                widthicon: 23,
-                                height: 45,
-                                width: 123,
+                                heighticon: 25.h,
+                                widthicon: 23.w,
+                                height: 45.h,
+                                width: 123.w,
                               ),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               CustomButton(
                                 onPressed: () => _onTabTap(2),
                                 text: 'Consent',
                                 textStyle: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                   color: _isActive(2)
                                       ? ColorApp.textColor
@@ -201,13 +202,13 @@ class _CustomHeaderTemplateState extends State<CustomHeaderTemplate> {
                                     ? null
                                     : Border.all(
                                         color: Colors.white,
-                                        width: 1.5,
+                                        width: 1.5.w,
                                       ),
                                 assetIcon: ImageAssets.consent,
-                                heighticon: 23,
-                                widthicon: 23,
-                                height: 45,
-                                width: 123,
+                                heighticon: 23.h,
+                                widthicon: 23.w,
+                                height: 45.h,
+                                width: 123.w,
                               ),
                             ],
                           ),
@@ -220,16 +221,17 @@ class _CustomHeaderTemplateState extends State<CustomHeaderTemplate> {
             ),
             if (widget.bottomCard != null)
               Positioned(
-                bottom: -50,
-                left: 16,
-                right: 16,
+                bottom: -50.h,
+                left: 16.w,
+                right: 16.w,
                 child: widget.bottomCard!,
               ),
           ],
         ),
-
         _buildTabContent(),
       ],
     );
   }
 }
+
+

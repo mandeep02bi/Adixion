@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomHeaderWidgets extends StatelessWidget {
   final String? title;
@@ -14,59 +15,73 @@ class CustomHeaderWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 110,
-      width: double.infinity,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset('assets/images/background/header.png', fit: BoxFit.fill),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        return SizedBox(
+          height: orientation == Orientation.portrait ? 110.h : 80.h,
+          width: double.infinity,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset(
+                'assets/images/background/header.png',
+                fit: BoxFit.fill,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: Image.asset(
-                        'assets/images/Icons/Patient/Frame.png',
-                        width: 35,
-                        height: 35.61,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
                       children: [
-                        Text(
-                          title ?? 'Add New Patient',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                        GestureDetector(
+                          onTap: () => Navigator.pop(context),
+                          child: Image.asset(
+                            'assets/images/Icons/Patient/Frame.png',
+                            width: orientation == Orientation.portrait
+                                ? 35.w
+                                : 25.w,
+                            height: orientation == Orientation.portrait
+                                ? 35.61.h
+                                : 25.61.h,
                           ),
                         ),
-                        SizedBox(height: 4),
-                        Text(
-                          'Fill in patient details',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Color(0xFFD0DCF4),
-                          ),
+                        SizedBox(width: 12.w),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              title ?? 'Add New Patient',
+                              style: TextStyle(
+                                fontSize: orientation == Orientation.portrait
+                                    ? 20.sp
+                                    : 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            if (orientation == Orientation.portrait) ...[
+                              SizedBox(height: 4.h),
+                              Text(
+                                'Fill in patient details',
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: const Color(0xFFD0DCF4),
+                                ),
+                              ),
+                            ],
+                          ],
                         ),
                       ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

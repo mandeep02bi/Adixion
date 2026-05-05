@@ -1,6 +1,7 @@
 import 'package:doctor/core/Theme/color_app.dart';
 import 'package:doctor/Core/helper/image_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PatineWidgetsTemplate extends StatelessWidget {
   final String name;
@@ -19,62 +20,57 @@ class PatineWidgetsTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: ColorApp.labelColor, width: 1),
+        borderRadius: BorderRadius.circular(18.r),
+        border: Border.all(color: ColorApp.labelColor, width: 1.w),
       ),
       child: Row(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             child: Image.asset(
               ImageAssets.at,
-              width: 40.51,
-              height: 38.51,
+              width: 40.51.w,
+              height: 38.51.h,
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 12),
-
+          SizedBox(width: 12.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Rishabh Singh',
-
-                  style: const TextStyle(
-                    fontSize: 16,
+                  name,
+                  style: TextStyle(
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.h),
               ],
             ),
           ),
-
           Row(
             children: [
               // 🗑 Delete
               GestureDetector(
                 onTap: onDelete,
-                child: Image.asset(ImageAssets.delete, height: 22, width: 22),
+                child: Image.asset(ImageAssets.delete, height: 22.h, width: 22.w),
               ),
-              const SizedBox(width: 8),
-
+              SizedBox(width: 8.w),
               // ✏️ Edit
               GestureDetector(
                 onTap: onEdit,
-                child: Image.asset(ImageAssets.pencile, height: 16, width: 16),
+                child: Image.asset(ImageAssets.pencile, height: 16.h, width: 16.w),
               ),
-              const SizedBox(width: 8),
-
+              SizedBox(width: 8.w),
               // 👁 View
               GestureDetector(
                 onTap: onView,
-                child: Image.asset(ImageAssets.eye, height: 27, width: 25),
+                child: Image.asset(ImageAssets.eye, height: 27.h, width: 25.w),
               ),
             ],
           ),
@@ -83,3 +79,4 @@ class PatineWidgetsTemplate extends StatelessWidget {
     );
   }
 }
+

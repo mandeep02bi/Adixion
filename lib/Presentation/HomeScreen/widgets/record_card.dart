@@ -1,5 +1,6 @@
 import 'package:doctor/core/Theme/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RecordCard extends StatelessWidget {
   final String items;
@@ -17,19 +18,19 @@ class RecordCard extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.all(15.w),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: ColorApp.textColor),
+            borderRadius: BorderRadius.circular(15.r),
+            border: Border.all(color: ColorApp.textColor, width: 1.w),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(items, width: 60, height: 60),
+              Image.asset(items, width: 60.w, height: 60.h),
               Text(
                 itemname,
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
                   color: ColorApp.hintColor,
                 ),
@@ -37,7 +38,7 @@ class RecordCard extends StatelessWidget {
               Text(
                 subitemname,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
                   color: ColorApp.labelColor,
                 ),
@@ -49,3 +50,4 @@ class RecordCard extends StatelessWidget {
     );
   }
 }
+
