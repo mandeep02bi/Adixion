@@ -1,6 +1,7 @@
 import 'package:doctor/Data/model/certificate_model.dart';
 import 'package:doctor/Data/model/invoice_model.dart';
 import 'package:doctor/Data/model/medicine_model.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -28,38 +29,47 @@ class MedicineDatabase {
     );
   }
 
-  Future _upgradeDB(Database db, int oldVersion, int newVersion) async {
-    if (oldVersion < 2) {
-      await db.execute('''
-        CREATE TABLE IF NOT EXISTS certificate(
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          title TEXT,
-          description TEXT,
-          date TEXT
-        )
-      ''');
-    }
-    if (oldVersion < 3) {
-      await db.execute('''
-        CREATE TABLE IF NOT EXISTS invoice(
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          patient_id TEXT,
-          name TEXT,
-          title TEXT,
-          item TEXT,
-          amount INTEGER,
-          total INTEGER,
-          age INTEGER,
-          is_paid INTEGER,
-          date TEXT
-        )
-      ''');
-    }
-    if (oldVersion < 4) {
-      await db.execute('ALTER TABLE medicines ADD COLUMN type TEXT DEFAULT "medicine"');
+Future _upgradeDB(Database db, int oldVersion, int newVersion) async {
+  if (oldVersion < 2) {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS certificate(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT,
+        description TEXT,
+        date TEXT
+      )
+    ''');
+  }
+  if (oldVersion < 3) {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS invoice(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        patient_id TEXT,
+        name TEXT,
+        title TEXT,
+        item TEXT,
+        amount INTEGER,
+        total INTEGER,
+        age INTEGER,
+        is_paid INTEGER,
+        date TEXT
+      )
+    ''');
+  }
+  if (oldVersion < 4) {
+    try {
+      final columns = await db.rawQuery('PRAGMA table_info(medicines)');
+      final hasType = columns.any((col) => col['name'] == 'type');
+      if (!hasType) {
+        await db.execute(
+          'ALTER TABLE medicines ADD COLUMN type TEXT DEFAULT "medicine"',
+        );
+      }
+    } catch (e) {
+      debugPrint('DB upgrade error: $e');
     }
   }
-
+}
   Future _createDB(Database db, int version) async {
     await db.execute('''
       CREATE TABLE IF NOT EXISTS medicines (
