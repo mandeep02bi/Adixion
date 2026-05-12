@@ -62,6 +62,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
             SizedBox(height: 8.h),
             const PatientWidgets(),
             SizedBox(height: 16.h),
+
             CustomFormField(
               label: 'DIAGNOSIS',
               hint: 'Viral Fever & Throat Infection',
@@ -71,6 +72,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
               heightIcon: 18.h,
             ),
             SizedBox(height: 16.h),
+
             CustomSectionTitle(
               icon: ImageAssets.drugs,
               title: 'MEDICINES',
@@ -83,6 +85,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
               heightIcon: 20.h,
             ),
             SizedBox(height: 12.h),
+
             FutureBuilder<List<MedicineModel>>(
               future: _medicinesFuture,
               builder: (context, snapshot) {
@@ -124,16 +127,14 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.asset(ImageAssets.baneg,
-                              width: 30.w, height: 30.h),
+                          Image.asset(ImageAssets.baneg, width: 30.w, height: 30.h),
                           SizedBox(width: 12.w),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: Text(
@@ -148,8 +149,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
                                     ),
                                     GestureDetector(
                                       onTap: () async {
-                                        await MedicineDatabase.instance
-                                            .deleteMedicine(med.id!);
+                                        await MedicineDatabase.instance.deleteMedicine(med.id!);
                                         _refreshData();
                                       },
                                       child: Icon(
@@ -288,7 +288,7 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
               Image.asset(ImageAssets.drugs, width: 40.w, height: 40.h),
               SizedBox(height: 6.h),
               Text(
-                'No medicines add yet',
+                'No medicines added yet',
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
@@ -311,5 +311,3 @@ class _AddperscriprionsecdrState extends State<Addperscriprionsecdr> {
     );
   }
 }
-
-  
